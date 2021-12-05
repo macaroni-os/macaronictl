@@ -1,0 +1,4 @@
+name: "Sabayon OS"
+suffix: "sabayon"
+type: "genkernel"
+with_arch: true

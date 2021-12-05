@@ -1,0 +1,4 @@
+name: "RockHopper Linux OS"
+suffix: "rhos"
+type: "vanilla"
+with_arch: true
