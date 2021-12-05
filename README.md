@@ -1,20 +1,20 @@
-# RockHopper Linux System Management Tool
+# Macaroni Linux System Management Tool
 
-[![Build on push](https://github.com/funtoo/rhctl/actions/workflows/push.yml/badge.svg)](https://github.com/funtoo/rhctl/actions/workflows/push.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/funtoo/rhctl)](https://goreportcard.com/report/github.com/funtoo/rhctl)
-[![CodeQL](https://github.com/funtoo/rhctl/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/funtoo/rhctl/actions/workflows/codeql-analysis.yml)
+[![Build on push](https://github.com/funtoo/macaronictl/actions/workflows/push.yml/badge.svg)](https://github.com/funtoo/macaronictl/actions/workflows/push.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/funtoo/macaronictl)](https://goreportcard.com/report/github.com/funtoo/macaronictl)
+[![CodeQL](https://github.com/funtoo/macaronictl/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/funtoo/macaronictl/actions/workflows/codeql-analysis.yml)
 
-The RockHopper OS knife tool to control your system.
+The Macaroni OS knife tool to control your system.
 
 At the moment, it contains only the commands to control
 the kernels and generate initrd images.
 
 
 ```
-$ rhctl --help
-Copyright (c) 2020-2021 RockHopper OS - Daniele Rondina
+$ macaronictl --help
+Copyright (c) 2020-2021 Macaroni OS - Daniele Rondina
 
-RockHopper Linux System Management Tool
+Macaroni Linux System Management Tool
 
 Usage:
    [command]
@@ -38,36 +38,36 @@ Use " [command] --help" for more information about a command.
 ### Generate Initrd
 
 ```
-$> rhctl kernel gi --help
+$> macaronictl kernel gi --help
 Rebuild Dracut initrd images.
 
 $> # Generate all initrd images of the kernels available on boot dir.
-$> rhctl kernel geninitrd --all
+$> macaronictl kernel geninitrd --all
 
 $> # Generate all initrd images of the kernels available on boot dir
 $> # and set the bzImage, Initrd links to one of the kernel available
 $> # if not present or to the next release of the same kernel after the
 $> # upgrade.
-$> rhctl kernel geninitrd --all --set-links
+$> macaronictl kernel geninitrd --all --set-links
 
 $> # Generate all initrd images of the kernels available on boot dir
 $> # and set the bzImage, Initrd links to one of the kernel available
 $> # if not present or to the next release of the same kernel after the
 $> # upgrade. In addition, it purges old initrd images and update grub.cfg.
-$> rhctl kernel geninitrd --all --set-links --purge --grub
+$> macaronictl kernel geninitrd --all --set-links --purge --grub
 
 $> # Just show what dracut commands will be executed for every initrd images.
-$> rhctl kernel geninitrd --all --dry-run
+$> macaronictl kernel geninitrd --all --dry-run
 
 $> # Generate the initrd image for the kernel 5.10.42
-$> rhctl kernel geninitrd --version 5.10.42
+$> macaronictl kernel geninitrd --version 5.10.42
 
 $> # Generate the initrd image for the kernel 5.10.42 and kernel type vanilla.
-$> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
+$> macaronictl kernel geninitrd --version 5.10.42 --ktype vanilla
 
 $> # Generate the initrd image for the kernel 5.10.42 and kernel type vanilla
 $> # and set the links bzImage, Initrd to the selected kernel/initrd.
-$> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
+$> macaronictl kernel geninitrd --version 5.10.42 --ktype vanilla
 
 Usage:
    kernel geninitrd [flags]
@@ -79,11 +79,11 @@ Flags:
       --all                          Rebuild all images with kernel.
       --bootdir string               Directory where analyze kernel files. (default "/boot")
       --dracut-opts string           Override the default dracut options used on the initrd image generation.
-                                     Set the RHOS_DRACUT_ARGS env in alternative.
+                                     Set the MACARONICTL_DRACUT_ARGS env in alternative.
       --dry-run                      Dry run commands.
       --grub                         Update grub.cfg.
   -h, --help                         help for geninitrd
-      --kernel-profiles-dir string   Specify the directory where read the kernel types profiles supported. (default "/etc/rhos/kernels-profiles/")
+      --kernel-profiles-dir string   Specify the directory where read the kernel types profiles supported. (default "/etc/macaroni/kernels-profiles/")
       --ktype string                 Specify the kernel type of the initrd image to build.
       --purge                        Clean orphan initrd images without kernel.
       --set-links                    Set bzImage and Initrd links for the selected kernel or update links of the upgraded kernel.

@@ -1,4 +1,4 @@
-module github.com/funtoo/rhctl
+module github.com/funtoo/macaronictl
 
 go 1.16
 

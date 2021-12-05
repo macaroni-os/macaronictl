@@ -1,17 +1,17 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 
 package cmd
 
 import (
-	cmdkernel "github.com/funtoo/rhctl/cmd/kernel"
-	specs "github.com/funtoo/rhctl/pkg/specs"
+	cmdkernel "github.com/funtoo/macaronictl/cmd/kernel"
+	specs "github.com/funtoo/macaronictl/pkg/specs"
 	"github.com/spf13/cobra"
 )
 
-func kernelCmdCommand(config *specs.RhCtlConfig) *cobra.Command {
+func kernelCmdCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "kernel",
 		Short: "Manage system kernels and initrd.",

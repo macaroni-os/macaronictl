@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package specs_test
@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	. "github.com/funtoo/rhctl/pkg/specs"
+	. "github.com/funtoo/macaronictl/pkg/specs"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -18,10 +18,10 @@ import (
 var _ = Describe("Specs Test", func() {
 
 	Context("Config1", func() {
-		os.Setenv("RHCTL_GENERAL__DEBUG", "true")
-		config := NewRhCtlConfig(v.New())
+		os.Setenv("MACARONICTL_GENERAL__DEBUG", "true")
+		config := NewMacaroniCtlConfig(v.New())
 		// Set env variable
-		config.Viper.SetEnvPrefix(RHCTL_ENV_PREFIX)
+		config.Viper.SetEnvPrefix(MACARONICTL_ENV_PREFIX)
 		config.Viper.BindEnv("config")
 		config.Viper.SetDefault("config", "")
 		config.Viper.SetDefault("etcd-config", false)

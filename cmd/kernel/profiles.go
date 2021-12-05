@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 
@@ -10,22 +10,22 @@ import (
 	"fmt"
 	"os"
 
-	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
-	"github.com/funtoo/rhctl/pkg/profile"
-	specs "github.com/funtoo/rhctl/pkg/specs"
+	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
+	"github.com/funtoo/macaronictl/pkg/profile"
+	specs "github.com/funtoo/macaronictl/pkg/specs"
 
 	tablewriter "github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
 
-func NewProfilesCommand(config *specs.RhCtlConfig) *cobra.Command {
+func NewProfilesCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	c := &cobra.Command{
 		Use:     "profiles",
 		Aliases: []string{"p"},
 		Short:   "List available kernels profiles.",
 		Long: `Shows kernels available in your system
 
-$ rhctl kernel profiles
+$ macaronictl kernel profiles
 
 `,
 		Run: func(cmd *cobra.Command, args []string) {

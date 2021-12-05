@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package logger
@@ -9,7 +9,7 @@ import (
 	"os"
 	"regexp"
 
-	specs "github.com/funtoo/rhctl/pkg/specs"
+	specs "github.com/funtoo/macaronictl/pkg/specs"
 
 	"github.com/kyokomi/emoji"
 	"github.com/logrusorgru/aurora"
@@ -17,35 +17,35 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-type RhCtlLogger struct {
-	Config *specs.RhCtlConfig
+type MacaroniCtlLogger struct {
+	Config *specs.MacaroniCtlConfig
 	Logger *zap.Logger
 	Aurora aurora.Aurora
 }
 
-var defaultLogger *RhCtlLogger = nil
+var defaultLogger *MacaroniCtlLogger = nil
 
-func NewRhCtlLogger(config *specs.RhCtlConfig) *RhCtlLogger {
-	return &RhCtlLogger{
+func NewMacaroniCtlLogger(config *specs.MacaroniCtlConfig) *MacaroniCtlLogger {
+	return &MacaroniCtlLogger{
 		Logger: nil,
 		Aurora: aurora.NewAurora(config.GetLogging().Color),
 		Config: config,
 	}
 }
 
-func (l *RhCtlLogger) GetAurora() aurora.Aurora {
+func (l *MacaroniCtlLogger) GetAurora() aurora.Aurora {
 	return l.Aurora
 }
 
-func (l *RhCtlLogger) SetAsDefault() {
+func (l *MacaroniCtlLogger) SetAsDefault() {
 	defaultLogger = l
 }
 
-func GetDefaultLogger() *RhCtlLogger {
+func GetDefaultLogger() *MacaroniCtlLogger {
 	return defaultLogger
 }
 
-func (l *RhCtlLogger) InitLogger2File() error {
+func (l *MacaroniCtlLogger) InitLogger2File() error {
 	var err error
 
 	// TODO: test permission for open logfile.
@@ -85,7 +85,7 @@ func level2Number(level string) int {
 	}
 }
 
-func (l *RhCtlLogger) log2File(level, msg string) {
+func (l *MacaroniCtlLogger) log2File(level, msg string) {
 	switch level {
 	case "error":
 		l.Logger.Error(msg)
@@ -111,7 +111,7 @@ func level2AtomicLevel(level string) zap.AtomicLevel {
 	}
 }
 
-func (l *RhCtlLogger) Msg(level string, withoutColor, ln bool, msg ...interface{}) {
+func (l *MacaroniCtlLogger) Msg(level string, withoutColor, ln bool, msg ...interface{}) {
 	var message string
 	var confLevel, msgLevel int
 
@@ -167,31 +167,31 @@ func (l *RhCtlLogger) Msg(level string, withoutColor, ln bool, msg ...interface{
 	}
 }
 
-func (l *RhCtlLogger) Warning(mess ...interface{}) {
+func (l *MacaroniCtlLogger) Warning(mess ...interface{}) {
 	l.Msg("warning", false, true, mess...)
 }
 
-func (l *RhCtlLogger) Debug(mess ...interface{}) {
+func (l *MacaroniCtlLogger) Debug(mess ...interface{}) {
 	l.Msg("debug", false, true, mess...)
 }
 
-func (l *RhCtlLogger) DebugC(mess ...interface{}) {
+func (l *MacaroniCtlLogger) DebugC(mess ...interface{}) {
 	l.Msg("debug", true, true, mess...)
 }
 
-func (l *RhCtlLogger) Info(mess ...interface{}) {
+func (l *MacaroniCtlLogger) Info(mess ...interface{}) {
 	l.Msg("info", false, true, mess...)
 }
 
-func (l *RhCtlLogger) InfoC(mess ...interface{}) {
+func (l *MacaroniCtlLogger) InfoC(mess ...interface{}) {
 	l.Msg("info", true, true, mess...)
 }
 
-func (l *RhCtlLogger) Error(mess ...interface{}) {
+func (l *MacaroniCtlLogger) Error(mess ...interface{}) {
 	l.Msg("error", false, true, mess...)
 }
 
-func (l *RhCtlLogger) Fatal(mess ...interface{}) {
+func (l *MacaroniCtlLogger) Fatal(mess ...interface{}) {
 	l.Error(mess)
 	os.Exit(1)
 }

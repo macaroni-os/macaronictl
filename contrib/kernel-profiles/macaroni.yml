@@ -1,0 +1,4 @@
+name: "Macaroni Linux OS"
+suffix: "macaroni"
+type: "vanilla"
+with_arch: true

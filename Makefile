@@ -1,9 +1,9 @@
 
 # go tool nm ./luet | grep Commit
-override LDFLAGS += -X "github.com/funtoo/rhctl/cmd.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
-override LDFLAGS += -X "github.com/funtoo/rhctl/cmd.BuildCommit=$(shell git rev-parse HEAD)"
+override LDFLAGS += -X "github.com/funtoo/macaronictl/cmd.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
+override LDFLAGS += -X "github.com/funtoo/macaronictl/cmd.BuildCommit=$(shell git rev-parse HEAD)"
 
-NAME ?= rhctl
+NAME ?= macaronictl
 PACKAGE_NAME ?= $(NAME)
 REVISION := $(shell git rev-parse --short HEAD || echo dev)
 VERSION := $(shell git describe --tags || echo $(REVISION))

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package profile
@@ -9,7 +9,7 @@ import (
 	"path"
 	"regexp"
 
-	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
+	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
 )
 
 func GetDefaultKernelProfiles() []kernelspecs.KernelType {
@@ -21,8 +21,8 @@ func GetDefaultKernelProfiles() []kernelspecs.KernelType {
 			WithArch: true,
 		},
 		kernelspecs.KernelType{
-			Name:     "RockHopper",
-			Suffix:   "rhos",
+			Name:     "Macaroni",
+			Suffix:   "macaroni",
 			Type:     "vanilla",
 			WithArch: true,
 		},

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 
@@ -10,13 +10,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/funtoo/rhctl/pkg/initrd"
-	"github.com/funtoo/rhctl/pkg/kernel"
-	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
-	"github.com/funtoo/rhctl/pkg/logger"
-	"github.com/funtoo/rhctl/pkg/profile"
-	specs "github.com/funtoo/rhctl/pkg/specs"
-	"github.com/funtoo/rhctl/pkg/utils"
+	"github.com/funtoo/macaronictl/pkg/initrd"
+	"github.com/funtoo/macaronictl/pkg/kernel"
+	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
+	"github.com/funtoo/macaronictl/pkg/logger"
+	"github.com/funtoo/macaronictl/pkg/profile"
+	specs "github.com/funtoo/macaronictl/pkg/specs"
+	"github.com/funtoo/macaronictl/pkg/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -57,7 +57,7 @@ func setFilesLinks(kf *kernelspecs.KernelFiles, bootDir, release string) error {
 	return nil
 }
 
-func NewGeninitrdCommand(config *specs.RhCtlConfig) *cobra.Command {
+func NewGeninitrdCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	c := &cobra.Command{
 		Use:     "geninitrd",
 		Aliases: []string{"gi"},
@@ -65,32 +65,32 @@ func NewGeninitrdCommand(config *specs.RhCtlConfig) *cobra.Command {
 		Long: `Rebuild Dracut initrd images.
 
 $> # Generate all initrd images of the kernels available on boot dir.
-$> rhctl kernel geninitrd --all
+$> macaronictl kernel geninitrd --all
 
 $> # Generate all initrd images of the kernels available on boot dir
 $> # and set the bzImage, Initrd links to one of the kernel available
 $> # if not present or to the next release of the same kernel after the
 $> # upgrade.
-$> rhctl kernel geninitrd --all --set-links
+$> macaronictl kernel geninitrd --all --set-links
 
 $> # Generate all initrd images of the kernels available on boot dir
 $> # and set the bzImage, Initrd links to one of the kernel available
 $> # if not present or to the next release of the same kernel after the
 $> # upgrade. In addition, it purges old initrd images and update grub.cfg.
-$> rhctl kernel geninitrd --all --set-links --purge --grub
+$> macaronictl kernel geninitrd --all --set-links --purge --grub
 
 $> # Just show what dracut commands will be executed for every initrd images.
-$> rhctl kernel geninitrd --all --dry-run
+$> macaronictl kernel geninitrd --all --dry-run
 
 $> # Generate the initrd image for the kernel 5.10.42
-$> rhctl kernel geninitrd --version 5.10.42
+$> macaronictl kernel geninitrd --version 5.10.42
 
 $> # Generate the initrd image for the kernel 5.10.42 and kernel type vanilla.
-$> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
+$> macaronictl kernel geninitrd --version 5.10.42 --ktype vanilla
 
 $> # Generate the initrd image for the kernel 5.10.42 and kernel type vanilla
 $> # and set the links bzImage, Initrd to the selected kernel/initrd.
-$> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
+$> macaronictl kernel geninitrd --version 5.10.42 --ktype vanilla
 
 `,
 		PreRun: func(cmd *cobra.Command, args []string) {

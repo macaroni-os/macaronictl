@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package specs
@@ -11,24 +11,24 @@ import (
 )
 
 const (
-	RHCTL_CONFIGNAME = "rhos"
-	RHCTL_ENV_PREFIX = "RHCTL"
+	MACARONICTL_CONFIGNAME = "macaronios"
+	MACARONICTL_ENV_PREFIX = "MACARONICTL"
 )
 
-type RhCtlConfig struct {
+type MacaroniCtlConfig struct {
 	Viper *v.Viper `yaml:"-" json:"-"`
 
-	General RhCtlGeneral `mapstructure:"general" json:"general,omitempty" yaml:"general,omitempty"`
-	Logging RhCtlLogging `mapstructure:"logging" json:"logging,omitempty" yaml:"logging,omitempty"`
+	General MacaroniCtlGeneral `mapstructure:"general" json:"general,omitempty" yaml:"general,omitempty"`
+	Logging MacaroniCtlLogging `mapstructure:"logging" json:"logging,omitempty" yaml:"logging,omitempty"`
 
 	KernelProfilesDir string `mapstructure:"kernel-profiles-dir,omitempty" yaml:"kernel-profiles-dir,omitempty"`
 }
 
-type RhCtlGeneral struct {
+type MacaroniCtlGeneral struct {
 	Debug bool `mapstructure:"debug,omitempty" json:"debug,omitempty" yaml:"debug,omitempty"`
 }
 
-type RhCtlLogging struct {
+type MacaroniCtlLogging struct {
 	// Path of the logfile
 	Path string `mapstructure:"path,omitempty" json:"path,omitempty" yaml:"path,omitempty"`
 	// Enable/Disable logging to file
@@ -45,24 +45,24 @@ type RhCtlLogging struct {
 	Color bool `mapstructure:"color,omitempty" json:"color,omitempty" yaml:"color,omitempty"`
 }
 
-func NewRhCtlConfig(viper *v.Viper) *RhCtlConfig {
+func NewMacaroniCtlConfig(viper *v.Viper) *MacaroniCtlConfig {
 	if viper == nil {
 		viper = v.New()
 	}
 
 	GenDefault(viper)
-	return &RhCtlConfig{Viper: viper}
+	return &MacaroniCtlConfig{Viper: viper}
 }
 
-func (c *RhCtlConfig) GetGeneral() *RhCtlGeneral {
+func (c *MacaroniCtlConfig) GetGeneral() *MacaroniCtlGeneral {
 	return &c.General
 }
 
-func (c *RhCtlConfig) GetLogging() *RhCtlLogging {
+func (c *MacaroniCtlConfig) GetLogging() *MacaroniCtlLogging {
 	return &c.Logging
 }
 
-func (c *RhCtlConfig) Unmarshal() error {
+func (c *MacaroniCtlConfig) Unmarshal() error {
 	var err error
 
 	if c.Viper.InConfig("etcd-config") &&
@@ -84,24 +84,24 @@ func (c *RhCtlConfig) Unmarshal() error {
 	return err
 }
 
-func (c *RhCtlConfig) Yaml() ([]byte, error) {
+func (c *MacaroniCtlConfig) Yaml() ([]byte, error) {
 	return yaml.Marshal(c)
 }
 
 func GenDefault(viper *v.Viper) {
 	viper.SetDefault("general.debug", false)
-	viper.SetDefault("kernel-profiles-dir", "/etc/rhos/kernels-profiles/")
+	viper.SetDefault("kernel-profiles-dir", "/etc/macaroni/kernels-profiles/")
 
 	viper.SetDefault("logging.level", "info")
 	viper.SetDefault("logging.enable_logfile", false)
-	viper.SetDefault("logging.path", "/var/log/rhos/rhctl.log")
+	viper.SetDefault("logging.path", "/var/log/macaroni/macaronictl.log")
 	viper.SetDefault("logging.json_format", false)
 	viper.SetDefault("logging.enable_emoji", true)
 	viper.SetDefault("logging.color", true)
 }
 
-func (g *RhCtlGeneral) HasDebug() bool {
+func (g *MacaroniCtlGeneral) HasDebug() bool {
 	return g.Debug
 }
 
-func (c *RhCtlConfig) GetKernelProfilesDir() string { return c.KernelProfilesDir }
+func (c *MacaroniCtlConfig) GetKernelProfilesDir() string { return c.KernelProfilesDir }

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package initrd
@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
+	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
 )
 
 type DracutBuilder struct {
@@ -26,8 +26,8 @@ func NewDracutBuilder(args string, dryRun bool) *DracutBuilder {
 		DryRun: dryRun,
 	}
 
-	if os.Getenv("RHOS_DRACUT_ARGS") != "" {
-		ans.Args = os.Getenv("RHOS_DRACUT_ARGS")
+	if os.Getenv("MACARONICTL_DRACUT_ARGS") != "" {
+		ans.Args = os.Getenv("MACARONICTL_DRACUT_ARGS")
 	}
 
 	return ans

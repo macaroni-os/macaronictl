@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package kernel
@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
-	"github.com/funtoo/rhctl/pkg/logger"
+	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
+	"github.com/funtoo/macaronictl/pkg/logger"
 )
 
 func ReadBootDir(bootdir string, supportedTypes []kernelspecs.KernelType) (*kernelspecs.BootFiles, error) {

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021 RockHopper OS Linux
+	Copyright © 2021 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 package cmd
@@ -9,19 +9,19 @@ import (
 	"os"
 	"strings"
 
-	"github.com/funtoo/rhctl/pkg/logger"
-	specs "github.com/funtoo/rhctl/pkg/specs"
+	"github.com/funtoo/macaronictl/pkg/logger"
+	specs "github.com/funtoo/macaronictl/pkg/specs"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 const (
-	cliName = `Copyright (c) 2020-2021 RockHopper OS - Daniele Rondina
+	cliName = `Copyright (c) 2020-2021 Macaroni OS - Daniele Rondina
 
-RockHopper Linux System Management Tool`
+Macaroni Linux System Management Tool`
 
-	RHCTL_VERSION = `0.2.0`
+	MACARONICTL_VERSION = `0.2.0`
 )
 
 var (
@@ -29,9 +29,9 @@ var (
 	BuildCommit string
 )
 
-func initConfig(config *specs.RhCtlConfig) {
+func initConfig(config *specs.MacaroniCtlConfig) {
 	// Set env variable
-	config.Viper.SetEnvPrefix(specs.RHCTL_ENV_PREFIX)
+	config.Viper.SetEnvPrefix(specs.MACARONICTL_ENV_PREFIX)
 	config.Viper.BindEnv("config")
 	config.Viper.SetDefault("config", "")
 	config.Viper.SetDefault("etcd-config", false)
@@ -43,12 +43,12 @@ func initConfig(config *specs.RhCtlConfig) {
 	config.Viper.SetEnvKeyReplacer(replacer)
 
 	// Set config file name (without extension)
-	config.Viper.SetConfigName(specs.RHCTL_CONFIGNAME)
+	config.Viper.SetConfigName(specs.MACARONICTL_CONFIGNAME)
 
 	config.Viper.SetTypeByDefaultValue(true)
 }
 
-func initCommand(rootCmd *cobra.Command, config *specs.RhCtlConfig) {
+func initCommand(rootCmd *cobra.Command, config *specs.MacaroniCtlConfig) {
 	var pflags = rootCmd.PersistentFlags()
 
 	pflags.StringP("config", "c", "", "Rhctl configuration file")
@@ -65,13 +65,13 @@ func initCommand(rootCmd *cobra.Command, config *specs.RhCtlConfig) {
 
 func Execute() {
 	// Create Main Instance Config object
-	var config *specs.RhCtlConfig = specs.NewRhCtlConfig(nil)
+	var config *specs.MacaroniCtlConfig = specs.NewMacaroniCtlConfig(nil)
 
 	initConfig(config)
 
 	var rootCmd = &cobra.Command{
 		Short:        cliName,
-		Version:      fmt.Sprintf("%s-g%s %s", RHCTL_VERSION, BuildCommit, BuildTime),
+		Version:      fmt.Sprintf("%s-g%s %s", MACARONICTL_VERSION, BuildCommit, BuildTime),
 		Args:         cobra.OnlyValidArgs,
 		SilenceUsage: true,
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -103,7 +103,7 @@ func Execute() {
 			}
 
 			// Initialize logger
-			log := logger.NewRhCtlLogger(config)
+			log := logger.NewMacaroniCtlLogger(config)
 			log.SetAsDefault()
 		},
 	}
