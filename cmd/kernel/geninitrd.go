@@ -254,7 +254,7 @@ $> macaronictl kernel geninitrd --version 5.10.42 --ktype vanilla
 	flags.String("ktype", "", "Specify the kernel type of the initrd image to build.")
 	flags.String("dracut-opts", "",
 		`Override the default dracut options used on the initrd image generation.
-Set the RHOS_DRACUT_ARGS env in alternative.`)
+Set the MACARONICTL_DRACUT_ARGS env in alternative.`)
 	flags.String("kernel-profiles-dir", "",
 		"Specify the directory where read the kernel types profiles supported.")
 

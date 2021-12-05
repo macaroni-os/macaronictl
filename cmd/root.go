@@ -51,7 +51,7 @@ func initConfig(config *specs.MacaroniCtlConfig) {
 func initCommand(rootCmd *cobra.Command, config *specs.MacaroniCtlConfig) {
 	var pflags = rootCmd.PersistentFlags()
 
-	pflags.StringP("config", "c", "", "Rhctl configuration file")
+	pflags.StringP("config", "c", "", "Macaronictl configuration file")
 	pflags.BoolP("debug", "d", config.Viper.GetBool("general.debug"),
 		"Enable debug output.")
 

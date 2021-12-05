@@ -144,7 +144,7 @@ func GrubMkconfig(grubCfgFile string, dryRun bool) error {
 
 	}
 
-	//grub-mkconfig -o ${RHOS_TARGET}/boot/grub/grub.cfg
+	//grub-mkconfig -o ${MACARONICTL_TARGET}/boot/grub/grub.cfg
 	grubBinary := "grub-mkconfig"
 	args := []string{
 		"-o", grubCfgFile,
