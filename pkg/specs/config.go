@@ -20,6 +20,8 @@ type RhCtlConfig struct {
 
 	General RhCtlGeneral `mapstructure:"general" json:"general,omitempty" yaml:"general,omitempty"`
 	Logging RhCtlLogging `mapstructure:"logging" json:"logging,omitempty" yaml:"logging,omitempty"`
+
+	KernelProfilesDir string `mapstructure:"kernel-profiles-dir,omitempty" yaml:"kernel-profiles-dir,omitempty"`
 }
 
 type RhCtlGeneral struct {
@@ -88,6 +90,7 @@ func (c *RhCtlConfig) Yaml() ([]byte, error) {
 
 func GenDefault(viper *v.Viper) {
 	viper.SetDefault("general.debug", false)
+	viper.SetDefault("kernel-profiles-dir", "/etc/rhos/kernels-profiles/")
 
 	viper.SetDefault("logging.level", "info")
 	viper.SetDefault("logging.enable_logfile", false)
@@ -100,3 +103,5 @@ func GenDefault(viper *v.Viper) {
 func (g *RhCtlGeneral) HasDebug() bool {
 	return g.Debug
 }
+
+func (c *RhCtlConfig) GetKernelProfilesDir() string { return c.KernelProfilesDir }

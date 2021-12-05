@@ -15,6 +15,7 @@ import (
 	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
 	"github.com/funtoo/rhctl/pkg/logger"
 	"github.com/funtoo/rhctl/pkg/profile"
+	specs "github.com/funtoo/rhctl/pkg/specs"
 	"github.com/funtoo/rhctl/pkg/utils"
 
 	"github.com/spf13/cobra"
@@ -56,7 +57,7 @@ func setFilesLinks(kf *kernelspecs.KernelFiles, bootDir, release string) error {
 	return nil
 }
 
-func NewGeninitrdCommand() *cobra.Command {
+func NewGeninitrdCommand(config *specs.RhCtlConfig) *cobra.Command {
 	c := &cobra.Command{
 		Use:     "geninitrd",
 		Aliases: []string{"gi"},
@@ -116,6 +117,8 @@ $> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
 
 			if kernelProfilesDir != "" {
 				types, _ = profile.LoadKernelProfiles(kernelProfilesDir)
+			} else {
+				types, _ = profile.LoadKernelProfiles(config.GetKernelProfilesDir())
 			}
 			if len(types) == 0 {
 				types = profile.GetDefaultKernelProfiles()
@@ -252,7 +255,7 @@ $> rhctl kernel geninitrd --version 5.10.42 --ktype vanilla
 	flags.String("dracut-opts", "",
 		`Override the default dracut options used on the initrd image generation.
 Set the RHOS_DRACUT_ARGS env in alternative.`)
-	flags.String("kernel-profiles-dir", "/etc/rhos/kernels-profiles/",
+	flags.String("kernel-profiles-dir", "",
 		"Specify the directory where read the kernel types profiles supported.")
 
 	return c

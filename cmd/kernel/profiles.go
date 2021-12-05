@@ -12,12 +12,13 @@ import (
 
 	kernelspecs "github.com/funtoo/rhctl/pkg/kernel/specs"
 	"github.com/funtoo/rhctl/pkg/profile"
+	specs "github.com/funtoo/rhctl/pkg/specs"
 
 	tablewriter "github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
 
-func NewProfilesCommand() *cobra.Command {
+func NewProfilesCommand(config *specs.RhCtlConfig) *cobra.Command {
 	c := &cobra.Command{
 		Use:     "profiles",
 		Aliases: []string{"p"},
@@ -36,6 +37,9 @@ $ rhctl kernel profiles
 			if kernelProfilesDir != "" {
 				types, _ = profile.LoadKernelProfiles(kernelProfilesDir)
 			} else {
+				types, _ = profile.LoadKernelProfiles(config.GetKernelProfilesDir())
+			}
+			if len(types) == 0 {
 				types = profile.GetDefaultKernelProfiles()
 			}
 
@@ -87,7 +91,7 @@ $ rhctl kernel profiles
 
 	flags := c.Flags()
 	flags.Bool("json", false, "JSON output")
-	flags.String("kernel-profiles-dir", "/etc/mocaccino/kernels-profiles/",
+	flags.String("kernel-profiles-dir", "",
 		"Specify the directory where read the kernel types profiles supported.")
 
 	return c

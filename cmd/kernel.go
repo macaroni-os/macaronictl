@@ -19,9 +19,9 @@ func kernelCmdCommand(config *specs.RhCtlConfig) *cobra.Command {
 	}
 
 	cmd.AddCommand(
-		cmdkernel.NewListcommand(),
-		cmdkernel.NewGeninitrdCommand(),
-		cmdkernel.NewProfilesCommand(),
+		cmdkernel.NewListcommand(config),
+		cmdkernel.NewGeninitrdCommand(config),
+		cmdkernel.NewProfilesCommand(config),
 	)
 
 	return cmd
