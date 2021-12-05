@@ -1,0 +1,80 @@
+# github.com/fsnotify/fsnotify v1.5.1
+github.com/fsnotify/fsnotify
+# github.com/hashicorp/hcl v1.0.0
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
+# github.com/inconshreveable/mousetrap v1.0.0
+github.com/inconshreveable/mousetrap
+# github.com/kyokomi/emoji v2.2.4+incompatible
+## explicit
+github.com/kyokomi/emoji
+# github.com/logrusorgru/aurora v2.0.3+incompatible
+## explicit
+github.com/logrusorgru/aurora
+# github.com/magiconair/properties v1.8.5
+github.com/magiconair/properties
+# github.com/mattn/go-runewidth v0.0.9
+github.com/mattn/go-runewidth
+# github.com/mitchellh/mapstructure v1.4.2
+github.com/mitchellh/mapstructure
+# github.com/olekukonko/tablewriter v0.0.5
+## explicit
+github.com/olekukonko/tablewriter
+# github.com/pelletier/go-toml v1.9.4
+github.com/pelletier/go-toml
+# github.com/spf13/afero v1.6.0
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.4.1
+github.com/spf13/cast
+# github.com/spf13/cobra v1.2.1
+## explicit
+github.com/spf13/cobra
+# github.com/spf13/jwalterweatherman v1.1.0
+github.com/spf13/jwalterweatherman
+# github.com/spf13/pflag v1.0.5
+github.com/spf13/pflag
+# github.com/spf13/viper v1.9.0
+## explicit
+github.com/spf13/viper
+github.com/spf13/viper/internal/encoding
+github.com/spf13/viper/internal/encoding/hcl
+github.com/spf13/viper/internal/encoding/json
+github.com/spf13/viper/internal/encoding/toml
+github.com/spf13/viper/internal/encoding/yaml
+# github.com/subosito/gotenv v1.2.0
+github.com/subosito/gotenv
+# go.uber.org/atomic v1.7.0
+go.uber.org/atomic
+# go.uber.org/multierr v1.6.0
+go.uber.org/multierr
+# go.uber.org/zap v1.19.1
+## explicit
+go.uber.org/zap
+go.uber.org/zap/buffer
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+go.uber.org/zap/zapcore
+# golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+# golang.org/x/text v0.3.6
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
+# gopkg.in/ini.v1 v1.63.2
+gopkg.in/ini.v1
+# gopkg.in/yaml.v2 v2.4.0
+## explicit
+gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+## explicit
+gopkg.in/yaml.v3
