@@ -1,5 +1,10 @@
 # RockHopper Linux System Management Tool
 
+
+[![Build Status](https://travis-ci.com/funtoo/rhctl.svg?branch=master)](https://travis-ci.com/funtoo/rhctl)
+[![Go Report Card](https://goreportcard.com/badge/github.com/funtoo/rhctl)](https://goreportcard.com/report/github.com/funtoo/rhctl)
+[![CodeQL](https://github.com/funtoo/rhctl/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/funtoo/rhctl/actions/workflows/codeql-analysis.yml)
+
 The RockHopper OS knife tool to control your system.
 
 At the moment, it contains only the commands to control
