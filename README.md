@@ -25,7 +25,7 @@ Available Commands:
   kernel      Manage system kernels and initrd.
 
 Flags:
-  -c, --config string   Rhctl configuration file
+  -c, --config string   MacaroniCtl configuration file
   -d, --debug           Enable debug output.
   -h, --help            help for this command
   -v, --version         version for this command
@@ -90,7 +90,7 @@ Flags:
       --version string               Specify the kernel version of the initrd image to build.
 
 Global Flags:
-  -c, --config string   Rhctl configuration file
+  -c, --config string   MacaroniCtl configuration file
   -d, --debug           Enable debug output.
 ```
 
