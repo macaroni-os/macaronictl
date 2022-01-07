@@ -10,7 +10,7 @@ import (
 
 	. "github.com/funtoo/macaronictl/pkg/specs"
 
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	v "github.com/spf13/viper"
 )
