@@ -60,6 +60,7 @@ func initCommand(rootCmd *cobra.Command, config *specs.MacaroniCtlConfig) {
 
 	rootCmd.AddCommand(
 		envUpdateCommand(config),
+		etcUpdateCommand(config),
 		kernelCmdCommand(config),
 	)
 }
