@@ -12,7 +12,7 @@ the kernels and generate initrd images.
 
 ```
 $ macaronictl --help
-Copyright (c) 2020-2021 Macaroni OS - Daniele Rondina
+Copyright (c) 2020-2022 Macaroni OS - Daniele Rondina
 
 Macaroni Linux System Management Tool
 
@@ -20,17 +20,40 @@ Usage:
    [command]
 
 Available Commands:
-  completion  generate the autocompletion script for the specified shell
+  completion  Generate the autocompletion script for the specified shell
+  env-update  Updates environment settings automatically.
   help        Help about any command
   kernel      Manage system kernels and initrd.
 
 Flags:
-  -c, --config string   MacaroniCtl configuration file
+  -c, --config string   Macaronictl configuration file
   -d, --debug           Enable debug output.
   -h, --help            help for this command
   -v, --version         version for this command
 
 Use " [command] --help" for more information about a command.
+
+```
+
+## env-update subcommand
+
+The `env-update` command follow the portage `env-update` command with
+same simplification.
+
+The generation of the `/etc/csh.env` instead is created only when
+(t)csh support is enabled (with `--csh` option or through configuration
+file option.
+
+The generation of the `/etc/environment.d/10-macaroni.conf` is created only when
+systemd support is enabled (with `--systemd` option or through configuration
+file option.
+
+```bash
+$> macaronictl env-update
+
+$> macaronictl env-update --dry-run
+
+$> macaronictl env-update --csh
 ```
 
 ## Kernel subcommands
