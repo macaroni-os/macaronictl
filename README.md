@@ -35,7 +35,7 @@ Use " [command] --help" for more information about a command.
 
 ```
 
-## env-update subcommand
+## env-update
 
 The `env-update` command follow the portage `env-update` command with
 same simplification.
