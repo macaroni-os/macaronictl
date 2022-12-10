@@ -42,11 +42,11 @@ same simplification.
 
 The generation of the `/etc/csh.env` instead is created only when
 (t)csh support is enabled (with `--csh` option or through configuration
-file option.
+file option).
 
 The generation of the `/etc/environment.d/10-macaroni.conf` is created only when
 systemd support is enabled (with `--systemd` option or through configuration
-file option.
+file option).
 
 ```bash
 $> macaronictl env-update
