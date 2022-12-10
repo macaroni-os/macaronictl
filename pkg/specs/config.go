@@ -18,14 +18,22 @@ const (
 type MacaroniCtlConfig struct {
 	Viper *v.Viper `yaml:"-" json:"-"`
 
-	General MacaroniCtlGeneral `mapstructure:"general" json:"general,omitempty" yaml:"general,omitempty"`
-	Logging MacaroniCtlLogging `mapstructure:"logging" json:"logging,omitempty" yaml:"logging,omitempty"`
+	General   MacaroniCtlGeneral   `mapstructure:"general" json:"general,omitempty" yaml:"general,omitempty"`
+	Logging   MacaroniCtlLogging   `mapstructure:"logging" json:"logging,omitempty" yaml:"logging,omitempty"`
+	EnvUpdate MacaroniCtlEnvUpdate `mapstructure:"env-update,omitempty" json:"env-update,omitempty" yaml:"env-update,omitempty"`
 
-	KernelProfilesDir string `mapstructure:"kernel-profiles-dir,omitempty" yaml:"kernel-profiles-dir,omitempty"`
+	KernelProfilesDir string `mapstructure:"kernel-profiles-dir,omitempty" json:"kernel-profiles-dir,omitempty" yaml:"kernel-profiles-dir,omitempty"`
 }
 
 type MacaroniCtlGeneral struct {
 	Debug bool `mapstructure:"debug,omitempty" json:"debug,omitempty" yaml:"debug,omitempty"`
+}
+
+type MacaroniCtlEnvUpdate struct {
+	Ldconfig bool `mapstructure:"ldconfig,omitempty" json:"ldconfig,omitempty" yaml:"ldconfig,omitempty"`
+	Csh      bool `mapstructure:"csh,omitempty" json:"csh,omitempty" yaml:"csh,omitempty"`
+	Prelink  bool `mapstructure:"prelink,omitempty" json:"prelink,omitempty" yaml:"prelink,omitempty"`
+	Systemd  bool `mapstructure:"systemd,omitempty" json:"systemd,omitempty" yaml:"systemd,omitempty"`
 }
 
 type MacaroniCtlLogging struct {
@@ -60,6 +68,10 @@ func (c *MacaroniCtlConfig) GetGeneral() *MacaroniCtlGeneral {
 
 func (c *MacaroniCtlConfig) GetLogging() *MacaroniCtlLogging {
 	return &c.Logging
+}
+
+func (c *MacaroniCtlConfig) GetEnvUpdate() *MacaroniCtlEnvUpdate {
+	return &c.EnvUpdate
 }
 
 func (c *MacaroniCtlConfig) Unmarshal() error {
@@ -98,6 +110,11 @@ func GenDefault(viper *v.Viper) {
 	viper.SetDefault("logging.json_format", false)
 	viper.SetDefault("logging.enable_emoji", true)
 	viper.SetDefault("logging.color", true)
+
+	viper.SetDefault("env-update.csh", false)
+	viper.SetDefault("env-update.ldconfig", true)
+	viper.SetDefault("env-update.systemd", false)
+	viper.SetDefault("env-update.prelink", false)
 }
 
 func (g *MacaroniCtlGeneral) HasDebug() bool {

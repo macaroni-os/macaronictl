@@ -1,6 +1,6 @@
 /*
-	Copyright © 2021 Macaroni OS Linux
-	See AUTHORS and LICENSE for the license details and contributors.
+Copyright © 2021 Macaroni OS Linux
+See AUTHORS and LICENSE for the license details and contributors.
 */
 package utils
 
@@ -25,7 +25,7 @@ func OsRelease() (string, error) {
 		release = strings.ReplaceAll(release, "\n", "")
 	} else if !os.IsNotExist(err) {
 		return release, err
-	} // else is not a mocaccino os rootfs.
+	} // else is not a macaroni os rootfs.
 
 	return release, nil
 }

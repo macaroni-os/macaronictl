@@ -1,6 +1,6 @@
 /*
-	Copyright © 2021 Macaroni OS Linux
-	See AUTHORS and LICENSE for the license details and contributors.
+Copyright © 2021 Macaroni OS Linux
+See AUTHORS and LICENSE for the license details and contributors.
 */
 package cmd
 
@@ -17,11 +17,11 @@ import (
 )
 
 const (
-	cliName = `Copyright (c) 2020-2021 Macaroni OS - Daniele Rondina
+	cliName = `Copyright (c) 2020-2022 Macaroni OS - Daniele Rondina
 
 Macaroni Linux System Management Tool`
 
-	MACARONICTL_VERSION = `0.3.1`
+	MACARONICTL_VERSION = `0.4.0`
 )
 
 var (
@@ -59,6 +59,7 @@ func initCommand(rootCmd *cobra.Command, config *specs.MacaroniCtlConfig) {
 	config.Viper.BindPFlag("general.debug", pflags.Lookup("debug"))
 
 	rootCmd.AddCommand(
+		envUpdateCommand(config),
 		kernelCmdCommand(config),
 	)
 }
