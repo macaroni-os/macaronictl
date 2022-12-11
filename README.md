@@ -60,7 +60,7 @@ $> macaronictl env-update --csh
 
 The `etc-update` command it's a wrapper of the portage `etc-update` script.
 
-This wrapper is been added to help users on handling systemd administration
+This wrapper is been added to help users on handling system administration
 stuff from a main tool. The idea is to rewrite in Golang the `etc-update`
 command in the near future.
 
