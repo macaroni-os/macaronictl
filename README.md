@@ -56,6 +56,18 @@ $> macaronictl env-update --dry-run
 $> macaronictl env-update --csh
 ```
 
+## etc-update
+
+The `etc-update` command it's a wrapper of the portage `etc-update` script.
+
+This wrapper is been added to help users on handling systemd administration
+stuff from a main tool. The idea is to rewrite in Golang the `etc-update`
+command in the near future.
+
+```bash
+$> macaronictl etc-update
+```
+
 ## Kernel subcommands
 
 ### Generate Initrd
