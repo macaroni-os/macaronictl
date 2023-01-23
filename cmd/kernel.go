@@ -6,8 +6,8 @@
 package cmd
 
 import (
-	cmdkernel "github.com/funtoo/macaronictl/cmd/kernel"
-	specs "github.com/funtoo/macaronictl/pkg/specs"
+	cmdkernel "github.com/macaroni-os/macaronictl/cmd/kernel"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 	"github.com/spf13/cobra"
 )
 

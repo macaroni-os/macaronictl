@@ -8,9 +8,9 @@ package cmd
 import (
 	"os"
 
-	"github.com/funtoo/macaronictl/pkg/logger"
-	"github.com/funtoo/macaronictl/pkg/portage"
-	specs "github.com/funtoo/macaronictl/pkg/specs"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/portage"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	"github.com/spf13/cobra"
 )

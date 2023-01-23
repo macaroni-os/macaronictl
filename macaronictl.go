@@ -5,7 +5,7 @@
 package main
 
 import (
-	cmd "github.com/funtoo/macaronictl/cmd"
+	cmd "github.com/macaroni-os/macaronictl/cmd"
 )
 
 func main() {

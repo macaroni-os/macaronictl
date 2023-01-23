@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
+	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
 )
 
 type DracutBuilder struct {

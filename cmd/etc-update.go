@@ -9,8 +9,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/funtoo/macaronictl/pkg/logger"
-	specs "github.com/funtoo/macaronictl/pkg/specs"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	"github.com/spf13/cobra"
 )

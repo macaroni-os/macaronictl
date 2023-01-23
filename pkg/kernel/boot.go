@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
-	"github.com/funtoo/macaronictl/pkg/logger"
+	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
 )
 
 func ReadBootDir(bootdir string, supportedTypes []kernelspecs.KernelType) (*kernelspecs.BootFiles, error) {

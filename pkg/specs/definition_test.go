@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	. "github.com/funtoo/macaronictl/pkg/specs"
+	. "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

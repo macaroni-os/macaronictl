@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"os"
 
-	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
-	"github.com/funtoo/macaronictl/pkg/profile"
-	specs "github.com/funtoo/macaronictl/pkg/specs"
+	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
+	"github.com/macaroni-os/macaronictl/pkg/profile"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	tablewriter "github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"

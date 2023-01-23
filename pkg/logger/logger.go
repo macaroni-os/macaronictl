@@ -9,7 +9,7 @@ import (
 	"os"
 	"regexp"
 
-	specs "github.com/funtoo/macaronictl/pkg/specs"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	"github.com/kyokomi/emoji"
 	"github.com/logrusorgru/aurora"

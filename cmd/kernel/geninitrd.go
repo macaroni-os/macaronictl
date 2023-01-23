@@ -10,13 +10,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/funtoo/macaronictl/pkg/initrd"
-	"github.com/funtoo/macaronictl/pkg/kernel"
-	kernelspecs "github.com/funtoo/macaronictl/pkg/kernel/specs"
-	"github.com/funtoo/macaronictl/pkg/logger"
-	"github.com/funtoo/macaronictl/pkg/profile"
-	specs "github.com/funtoo/macaronictl/pkg/specs"
-	"github.com/funtoo/macaronictl/pkg/utils"
+	"github.com/macaroni-os/macaronictl/pkg/initrd"
+	"github.com/macaroni-os/macaronictl/pkg/kernel"
+	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/profile"
+	specs "github.com/macaroni-os/macaronictl/pkg/specs"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 
 	"github.com/spf13/cobra"
 )

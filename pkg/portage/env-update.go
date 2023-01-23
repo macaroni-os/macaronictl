@@ -13,8 +13,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/funtoo/macaronictl/pkg/logger"
-	"github.com/funtoo/macaronictl/pkg/utils"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
 
 type EnvUpdateOpts struct {

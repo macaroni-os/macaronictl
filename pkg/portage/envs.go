@@ -13,8 +13,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/funtoo/macaronictl/pkg/logger"
-	"github.com/funtoo/macaronictl/pkg/utils"
+	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 
 	"mvdan.cc/sh/v3/expand"
 	"mvdan.cc/sh/v3/interp"

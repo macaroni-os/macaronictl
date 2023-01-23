@@ -1,4 +1,4 @@
-module github.com/funtoo/macaronictl
+module github.com/macaroni-os/macaronictl
 
 go 1.18
 

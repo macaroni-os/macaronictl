@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/funtoo/macaronictl/pkg/utils"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
 
 const (
