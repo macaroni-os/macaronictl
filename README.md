@@ -12,7 +12,7 @@ the kernels and generate initrd images.
 
 ```
 $ macaronictl --help
-Copyright (c) 2020-2022 Macaroni OS - Daniele Rondina
+Copyright (c) 2020-2023 Macaroni OS - Daniele Rondina
 
 Macaroni Linux System Management Tool
 
@@ -22,6 +22,7 @@ Usage:
 Available Commands:
   completion  Generate the autocompletion script for the specified shell
   env-update  Updates environment settings automatically.
+  etc-update  Handle configuration file updates.
   help        Help about any command
   kernel      Manage system kernels and initrd.
 
@@ -32,7 +33,6 @@ Flags:
   -v, --version         version for this command
 
 Use " [command] --help" for more information about a command.
-
 ```
 
 ## env-update
