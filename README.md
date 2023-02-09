@@ -58,14 +58,20 @@ $> macaronictl env-update --csh
 
 ## etc-update
 
-The `etc-update` command it's a wrapper of the portage `etc-update` script.
+The `etc-update` command follows the Portage `etc-update` logic with
+some simplification.
 
-This wrapper is been added to help users on handling system administration
-stuff from a main tool. The idea is to rewrite in Golang the `etc-update`
-command in the near future.
+It read the same `/etc/etc-update.conf` configuration file and it permits to
+use `vim`, `emacs`.
 
 ```bash
 $> macaronictl etc-update
+```
+
+Could be used to analyze a specific path too:
+
+```bash
+$> macaronictl etc-update -p /opt/myconf
 ```
 
 ## Kernel subcommands
