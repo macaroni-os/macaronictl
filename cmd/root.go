@@ -1,5 +1,5 @@
 /*
-Copyright © 2021 Macaroni OS Linux
+Copyright © 2020-2023 Macaroni OS Linux
 See AUTHORS and LICENSE for the license details and contributors.
 */
 package cmd
@@ -17,11 +17,11 @@ import (
 )
 
 const (
-	cliName = `Copyright (c) 2020-2022 Macaroni OS - Daniele Rondina
+	cliName = `Copyright (c) 2020-2023 Macaroni OS - Daniele Rondina
 
 Macaroni Linux System Management Tool`
 
-	MACARONICTL_VERSION = `0.5.0`
+	MACARONICTL_VERSION = `0.6.0`
 )
 
 var (
