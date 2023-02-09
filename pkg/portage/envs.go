@@ -21,7 +21,7 @@ import (
 	"mvdan.cc/sh/v3/syntax"
 )
 
-func parseEnvFile(file string) (map[string]string, error) {
+func ParseEnvFile(file string) (map[string]string, error) {
 	log := logger.GetDefaultLogger()
 	ans := make(map[string]string, 0)
 
@@ -125,7 +125,7 @@ func ParseEnvd(rootdir string, opts *EnvUpdateOpts) (map[string]string, error) {
 		envFile := filepath.Join(envDir, file.Name())
 
 		// Parse the environment file
-		m, err := parseEnvFile(envFile)
+		m, err := ParseEnvFile(envFile)
 		if err != nil {
 			return ans, err
 		}

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2021-2022 Macaroni OS Linux
+	Copyright © 2021-2023 Macaroni OS Linux
 	See AUTHORS and LICENSE for the license details and contributors.
 */
 
@@ -7,9 +7,9 @@ package cmd
 
 import (
 	"os"
-	"os/exec"
 
 	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/portage"
 	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
 	"github.com/spf13/cobra"
@@ -20,7 +20,8 @@ func etcUpdateCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 		Use:     "etc-update",
 		Aliases: []string{"etc"},
 		Short:   "Handle configuration file updates.",
-		Long: `At the moment it's a simple wrapper for Portage etc-update
+		Long: `handle configuration file updates and automatically
+merge the CONFIG_PROTECT_MASK files.
 
 $> macaronictl etc-update
 
@@ -30,26 +31,29 @@ $> macaronictl etc-update
 		Run: func(cmd *cobra.Command, args []string) {
 			log := logger.GetDefaultLogger()
 
-			etcCommand := exec.Command("etc-update")
-			etcCommand.Stdout = os.Stdout
-			etcCommand.Stderr = os.Stderr
-			etcCommand.Stdin = os.Stdin
+			rootfs, _ := cmd.Flags().GetString("rootfs")
+			paths, _ := cmd.Flags().GetStringArray("path")
+			mpaths, _ := cmd.Flags().GetStringArray("mask-path")
 
-			err := etcCommand.Start()
+			opts := portage.NewEtcUpdateOpts()
+			opts.Paths = paths
+			opts.MaskPaths = mpaths
+
+			err := portage.EtcUpdate(rootfs, opts)
 			if err != nil {
-				log.Error("Error on start etc-update command: " + err.Error())
+				log.Error("Error: " + err.Error())
 				os.Exit(1)
 			}
-
-			err = etcCommand.Wait()
-			if err != nil {
-				log.Error("Error on waiting etc-update command: " + err.Error())
-				os.Exit(1)
-			}
-
-			os.Exit(etcCommand.ProcessState.ExitCode())
 		},
 	}
+
+	flags := c.Flags()
+	flags.String("rootfs", "/",
+		"Override the default path where run etc-update. (experimental)")
+	flags.StringArrayP("path", "p", []string{},
+		"Scan one or more specific paths (CONFIG_PROTECT).")
+	flags.StringArrayP("mask-path", "m", []string{},
+		"Define one or more additional mask paths (CONFIG_PROTECT_MASK).")
 
 	return c
 }
