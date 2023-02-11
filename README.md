@@ -1,4 +1,8 @@
-# Macaroni Linux System Management Tool
+<p align="center">
+  <img src="https://github.com/macaroni-os/macaroni-site/blob/master/site/static/images/logo.png">
+</p>
+
+# Macaroni OS System Management Tool
 
 [![Build on push](https://github.com/funtoo/macaronictl/actions/workflows/push.yml/badge.svg)](https://github.com/funtoo/macaronictl/actions/workflows/push.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/funtoo/macaronictl)](https://goreportcard.com/report/github.com/funtoo/macaronictl)
