@@ -4,9 +4,9 @@
 
 # Macaroni OS System Management Tool
 
-[![Build on push](https://github.com/funtoo/macaronictl/actions/workflows/push.yml/badge.svg)](https://github.com/funtoo/macaronictl/actions/workflows/push.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/funtoo/macaronictl)](https://goreportcard.com/report/github.com/funtoo/macaronictl)
-[![CodeQL](https://github.com/funtoo/macaronictl/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/funtoo/macaronictl/actions/workflows/codeql-analysis.yml)
+[![Build on push](https://github.com/macaroni-os/macaronictl/actions/workflows/push.yml/badge.svg)](https://github.com/macaroni-os/macaronictl/actions/workflows/push.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/macaroni-os/macaronictl)](https://goreportcard.com/report/github.com/macaroni-os/macaronictl)
+[![CodeQL](https://github.com/macaroni-os/macaronictl/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/macaroni-os/macaronictl/actions/workflows/codeql-analysis.yml)
 
 The Macaroni OS knife tool to control your system.
 
