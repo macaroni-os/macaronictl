@@ -950,6 +950,7 @@ func diffCommand(conf *EtcUpdateConf, file1, file2 string, quiet bool) error {
 
 func mergeCommand(conf *EtcUpdateConf,
 	fileMerged, fileOld, fileNew string, quiet bool) error {
+	var cmd *exec.Cmd
 
 	log := logger.GetDefaultLogger()
 
@@ -960,8 +961,6 @@ func mergeCommand(conf *EtcUpdateConf,
 	mergeCommand = strings.ReplaceAll(mergeCommand, "%orig", fileOld)
 	// Replace %new with the new file path
 	mergeCommand = strings.ReplaceAll(mergeCommand, "%new", fileNew)
-
-	var cmd *exec.Cmd = nil
 
 	args := strings.Split(mergeCommand, " ")
 
