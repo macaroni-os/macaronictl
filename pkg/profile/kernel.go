@@ -1,6 +1,6 @@
 /*
-	Copyright © 2021 Macaroni OS Linux
-	See AUTHORS and LICENSE for the license details and contributors.
+Copyright © 2021 Macaroni OS Linux
+See AUTHORS and LICENSE for the license details and contributors.
 */
 package profile
 
@@ -14,13 +14,13 @@ import (
 
 func GetDefaultKernelProfiles() []kernelspecs.KernelType {
 	return []kernelspecs.KernelType{
-		kernelspecs.KernelType{
+		{
 			Name:     "Sabayon",
 			Suffix:   "sabayon",
 			Type:     "genkernel",
 			WithArch: true,
 		},
-		kernelspecs.KernelType{
+		{
 			Name:     "Macaroni",
 			Suffix:   "macaroni",
 			Type:     "vanilla",

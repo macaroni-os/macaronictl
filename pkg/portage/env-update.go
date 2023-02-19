@@ -98,7 +98,7 @@ func writeProfileEnv(file string, opts *EnvUpdateOpts,
 
 	// Sort envs keys
 	keys := []string{}
-	for k, _ := range envs {
+	for k := range envs {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)

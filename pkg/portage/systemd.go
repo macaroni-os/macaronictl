@@ -53,7 +53,7 @@ func writeSystemdEnvFile(file string, mRef *map[string]string, opts *EnvUpdateOp
 
 	// Sort envs keys
 	keys := []string{}
-	for k, _ := range envs {
+	for k := range envs {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)

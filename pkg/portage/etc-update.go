@@ -384,7 +384,7 @@ func processFiles(task *EtcUpdateTask) error {
 configuration file is followed by a list of possible replacement files.
 `)
 
-		for k, _ := range task.FilesMap {
+		for k := range task.FilesMap {
 			filesList = append(filesList, k)
 			fmt.Println(fmt.Sprintf(
 				"[%3d] %s", aurora.Bold(idx), aurora.Bold(k)))
