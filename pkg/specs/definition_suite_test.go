@@ -1,6 +1,6 @@
 /*
-	Copyright © 2021 Macaroni OS Linux
-	See AUTHORS and LICENSE for the license details and contributors.
+Copyright © 2021-2023 Macaroni OS Linux
+See AUTHORS and LICENSE for the license details and contributors.
 */
 package specs_test
 
@@ -13,5 +13,5 @@ import (
 
 func TestSolver(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Specs defintion Suite")
+	RunSpecs(t, "Specs definition Suite")
 }
