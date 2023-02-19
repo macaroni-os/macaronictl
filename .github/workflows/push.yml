@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ["1.18.x", "1.19.x"]
+        go: ["1.18.x", "1.19.x", "1.20.x"]
     steps:
       - name: Install Go ${{ matrix.go }}
         uses: actions/setup-go@v3
@@ -23,7 +23,7 @@ jobs:
         run: |
             sudo -E env "PATH=$PATH" make deps
       - name: Install GoReleaser
-        uses: goreleaser/goreleaser-action@v2
+        uses: goreleaser/goreleaser-action@v4
         with:
           install-only: true
       - name: Build test
