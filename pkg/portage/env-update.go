@@ -167,6 +167,68 @@ func writeLdsoConf(file, ldpath string, opts *EnvUpdateOpts) error {
 	return nil
 }
 
+func execLdconfig(rootdir, ldpath string, opts *EnvUpdateOpts) error {
+	log := logger.GetDefaultLogger()
+	ldconfig := "ldconfig"
+
+	// Retrieve the abs path of ldconfig to avoid errors
+	// when the $PATH is not set correctly.
+	possiblePaths := []string{
+		"/sbin",
+		"/bin",
+		"/usr/sbin",
+		"/usr",
+	}
+
+	for _, s := range possiblePaths {
+		abs := filepath.Join(s, ldconfig)
+		if utils.Exists(abs) {
+			ldconfig = filepath.Join(abs)
+			break
+		}
+	}
+
+	if ldconfig == "ldconfig" {
+		log.Warning("ldconfig on defined paths. Try to run it without abs path.")
+	} else {
+		log.Debug("Using ldconfig path:", ldconfig)
+	}
+
+	args := []string{
+		"-X", "-r", fmt.Sprintf("%s", rootdir),
+	}
+	if opts.Debug {
+		args = append(args, "-v")
+	}
+
+	// TODO: check if create ldconfig binary from CHOST
+	ldconfigCommand := exec.Command(ldconfig, args...)
+	ldconfigCommand.Stdout = os.Stdout
+	ldconfigCommand.Stderr = os.Stderr
+	ldconfigCommand.Env = []string{
+		fmt.Sprintf("LDPATH=%s", ldpath),
+	}
+
+	err := ldconfigCommand.Start()
+	if err != nil {
+		return errors.New("Error on start ldconfig command: " + err.Error())
+	}
+
+	err = ldconfigCommand.Wait()
+	if err != nil {
+		return errors.New("Error on waiting ldconfig command: " + err.Error())
+	}
+
+	if ldconfigCommand.ProcessState.ExitCode() != 0 {
+		return fmt.Errorf(
+			"ldconfig command exiting with %d",
+			ldconfigCommand.ProcessState.ExitCode())
+	}
+
+	return nil
+
+}
+
 func EnvUpdate(rootdir string, opts *EnvUpdateOpts) error {
 	log := logger.GetDefaultLogger()
 
@@ -248,35 +310,11 @@ func EnvUpdate(rootdir string, opts *EnvUpdateOpts) error {
 
 			log.Info(fmt.Sprintf(
 				">>> Regenerating %s...", filepath.Join(rootdir, "/etc/ld.so.cache")))
-
-			args := []string{
-				"-X", "-r", fmt.Sprintf("%s", rootdir),
-			}
-			if opts.Debug {
-				args = append(args, "-v")
-			}
-
-			// TODO: check if create ldconfig binary from CHOST
-			ldconfigCommand := exec.Command("ldconfig", args...)
-			ldconfigCommand.Stdout = os.Stdout
-			ldconfigCommand.Stderr = os.Stderr
-			ldconfigCommand.Env = []string{fmt.Sprintf("LDPATH=%s", ldpath)}
-
-			err = ldconfigCommand.Start()
+			err := execLdconfig(rootdir, ldpath, opts)
 			if err != nil {
-				return errors.New("Error on start ldconfig command: " + err.Error())
+				return err
 			}
 
-			err = ldconfigCommand.Wait()
-			if err != nil {
-				return errors.New("Error on waiting ldconfig command: " + err.Error())
-			}
-
-			if ldconfigCommand.ProcessState.ExitCode() != 0 {
-				return errors.New(
-					fmt.Sprintf("ldconfig command exiting with %d",
-						ldconfigCommand.ProcessState.ExitCode()))
-			}
 		}
 
 	}
