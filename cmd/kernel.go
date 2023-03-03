@@ -13,13 +13,15 @@ import (
 
 func kernelCmdCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "kernel",
-		Short: "Manage system kernels and initrd.",
-		Long:  `Manage kernels and initrd images of your system.`,
+		Use:     "kernel",
+		Aliases: []string{"k"},
+		Short:   "Manage system kernels and initrd.",
+		Long:    `Manage kernels and initrd images of your system.`,
 	}
 
 	cmd.AddCommand(
 		cmdkernel.NewListcommand(config),
+		cmdkernel.NewAvailablescommand(config),
 		cmdkernel.NewGeninitrdCommand(config),
 		cmdkernel.NewProfilesCommand(config),
 	)
