@@ -801,7 +801,20 @@ func scanDir(dir string, task *EtcUpdateTask) error {
 			log.Debug("File", f.Name(), "skipped.")
 			continue
 		}
-		err = scanFile(filepath.Join(dir, strings.Join(words[2:], "")), task)
+
+		forig := filepath.Join(dir, strings.Join(words[2:], ""))
+		// Check if the file exists - #1
+		if !utils.Exists(forig) {
+			log.Info(fmt.Sprintf(
+				"File %s is an orphan. Removing it directly...", f.Name()))
+			err = os.Remove(filepath.Join(dir, f.Name()))
+			if err != nil {
+				return err
+			}
+			continue
+		}
+
+		err = scanFile(forig, task)
 		if err != nil {
 			return err
 		}
