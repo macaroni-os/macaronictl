@@ -1,6 +1,6 @@
 /*
-	Copyright © 2021 Macaroni OS Linux
-	See AUTHORS and LICENSE for the license details and contributors.
+Copyright © 2021 Macaroni OS Linux
+See AUTHORS and LICENSE for the license details and contributors.
 */
 package main
 
