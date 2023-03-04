@@ -64,9 +64,9 @@ $ macaronictl kernel list
 				})
 				table.SetCenterSeparator("|")
 				table.SetHeader([]string{
+					"Kernel",
+					"Kernel Version",
 					"Type",
-					"Suffix",
-					"Version",
 					"Has Initrd",
 					"Has Kernel Image",
 					"Has bzImage,Initrd links",
@@ -79,7 +79,6 @@ $ macaronictl kernel list
 					hasLinks := false
 
 					row := []string{
-						kf.Type.GetType(),
 						kf.Type.GetSuffix(),
 					}
 
@@ -104,6 +103,7 @@ $ macaronictl kernel list
 
 					row = append(row, []string{
 						version,
+						kf.Type.GetType(),
 						fmt.Sprintf("%v", hasInitrd),
 						fmt.Sprintf("%v", hasKernel),
 						fmt.Sprintf("%v", hasLinks),

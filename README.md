@@ -86,11 +86,12 @@ Get the list of the configured and installed kernel under the `/boot` directory.
 
 ```
 $> macaronictl kernel list
-|  TYPE   |  SUFFIX  | VERSION  | HAS INITRD | HAS KERNEL IMAGE | HAS BZIMAGE,INITRD LINKS |
-|---------|----------|----------|------------|------------------|--------------------------|
-| vanilla | macaroni | 5.10.162 | true       | true             | false                    |
-| vanilla | macaroni | 5.15.86  | true       | true             | false                    |
-| vanilla | macaroni | 5.4.228  | true       | true             | false                    |
+|  KERNEL  | KERNEL VERSION |  TYPE   | HAS INITRD | HAS KERNEL IMAGE | HAS BZIMAGE,INITRD LINKS |
+|----------|----------------|---------|------------|------------------|--------------------------|
+| macaroni | 5.10.162       | vanilla | true       | true             | false                    |
+| macaroni | 5.15.86        | vanilla | true       | true             | false                    |
+| macaroni | 5.4.228        | vanilla | true       | true             | false                    |
+
 ```
 
 ### Availables (from v0.7.0)
