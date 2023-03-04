@@ -80,6 +80,51 @@ $> macaronictl etc-update -p /opt/myconf
 
 ## Kernel subcommands
 
+### List
+
+Get the list of the configured and installed kernel under the `/boot` directory.
+
+```
+$> macaronictl kernel list
+|  TYPE   |  SUFFIX  | VERSION  | HAS INITRD | HAS KERNEL IMAGE | HAS BZIMAGE,INITRD LINKS |
+|---------|----------|----------|------------|------------------|--------------------------|
+| vanilla | macaroni | 5.10.162 | true       | true             | false                    |
+| vanilla | macaroni | 5.15.86  | true       | true             | false                    |
+| vanilla | macaroni | 5.4.228  | true       | true             | false                    |
+```
+
+### Availables (from v0.7.0)
+
+Get the list of the available kernel in the configured and enabled repositories:
+
+```
+$> macaronictl kernel availables
+|  KERNEL  | KERNEL VERSION | PACKAGE VERSION |    EOL    |  LTS  |  RELEASED  |  TYPE   |
+|----------|----------------|-----------------|-----------|-------|------------|---------|
+| macaroni | 4.14.305       | 4.14.305        | Jan, 2024 | true  | 2017-11-12 | vanilla |
+| macaroni | 5.10.168       | 5.10.168        | Dec, 2026 | true  | 2020-12-13 | vanilla |
+| macaroni | 5.15.94        | 5.15.94         | Oct, 2026 | true  | 2021-10-31 | vanilla |
+| macaroni | 5.4.231        | 5.4.231         | Dec, 2025 | true  | 2019-11-24 | vanilla |
+| macaroni | 6.1.12         | 6.1.12          | Dec, 2026 | true  | 2022-12-11 | vanilla |
+| macaroni | 6.2.1          | 6.2.1           | N/A       | false | 2023-02-19 | vanilla |
+
+```
+
+or only the LTS kernels:
+
+```
+$> macaronictl kernel availables --lts
+|  KERNEL  | KERNEL VERSION | PACKAGE VERSION |    EOL    | LTS  |  RELEASED  |  TYPE   |
+|----------|----------------|-----------------|-----------|------|------------|---------|
+| macaroni | 4.14.305       | 4.14.305        | Jan, 2024 | true | 2017-11-12 | vanilla |
+| macaroni | 5.10.168       | 5.10.168        | Dec, 2026 | true | 2020-12-13 | vanilla |
+| macaroni | 5.15.94        | 5.15.94         | Oct, 2026 | true | 2021-10-31 | vanilla |
+| macaroni | 5.4.231        | 5.4.231         | Dec, 2025 | true | 2019-11-24 | vanilla |
+| macaroni | 6.1.12         | 6.1.12          | Dec, 2026 | true | 2022-12-11 | vanilla |
+
+```
+
+
 ### Generate Initrd
 
 ```
