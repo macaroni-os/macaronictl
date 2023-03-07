@@ -828,7 +828,7 @@ func scanFile(file string, task *EtcUpdateTask) error {
 	dir := filepath.Dir(file)
 	base := filepath.Base(file)
 	regexCfgs := regexp.MustCompile(
-		fmt.Sprintf(`^._cfg[0-9]+_%s`, base))
+		fmt.Sprintf(`^._cfg[0-9]+_%s$`, base))
 
 	sanitizedFile := file
 	if task.Rootdir != "/" {
