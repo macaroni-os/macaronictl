@@ -5,6 +5,7 @@ See AUTHORS and LICENSE for the license details and contributors.
 package cmdkernel
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -132,6 +133,13 @@ NOTE: It works only if the repositories are synced.
 
 				table.Render()
 
+			} else {
+				data, err := json.Marshal(kernels)
+				if err != nil {
+					fmt.Println(fmt.Errorf("Error on convert data to json: %s", err.Error()))
+					os.Exit(1)
+				}
+				fmt.Println(string(data))
 			}
 
 		},
