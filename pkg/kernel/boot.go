@@ -15,6 +15,7 @@ import (
 
 	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
 	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
 
 func ReadBootDir(bootdir string, supportedTypes []kernelspecs.KernelType) (*kernelspecs.BootFiles, error) {
@@ -144,8 +145,9 @@ func GrubMkconfig(grubCfgFile string, dryRun bool) error {
 
 	}
 
+	// Try to resolve absolute path of grub-mkconfig
+	grubBinary := utils.TryResolveBinaryAbsPath("grub-mkconfig")
 	//grub-mkconfig -o ${MACARONICTL_TARGET}/boot/grub/grub.cfg
-	grubBinary := "grub-mkconfig"
 	args := []string{
 		"-o", grubCfgFile,
 	}

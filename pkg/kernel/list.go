@@ -19,8 +19,9 @@ func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 	var outBuffer bytes.Buffer
 	var ans specs.StonesPack
 
+	luet := utils.TryResolveBinaryAbsPath("luet")
 	args := []string{
-		"luet", "search", "-a", "kernel", "-n", "macaroni-full",
+		luet, "search", "-a", "kernel", "-n", "macaroni-full",
 		"-o", "json",
 	}
 

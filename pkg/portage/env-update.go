@@ -169,24 +169,9 @@ func writeLdsoConf(file, ldpath string, opts *EnvUpdateOpts) error {
 
 func execLdconfig(rootdir, ldpath string, opts *EnvUpdateOpts) error {
 	log := logger.GetDefaultLogger()
-	ldconfig := "ldconfig"
-
 	// Retrieve the abs path of ldconfig to avoid errors
 	// when the $PATH is not set correctly.
-	possiblePaths := []string{
-		"/sbin",
-		"/bin",
-		"/usr/sbin",
-		"/usr",
-	}
-
-	for _, s := range possiblePaths {
-		abs := filepath.Join(s, ldconfig)
-		if utils.Exists(abs) {
-			ldconfig = filepath.Join(abs)
-			break
-		}
-	}
+	ldconfig := utils.TryResolveBinaryAbsPath("ldconfig")
 
 	if ldconfig == "ldconfig" {
 		log.Warning("ldconfig on defined paths. Try to run it without abs path.")

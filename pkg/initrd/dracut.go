@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	kernelspecs "github.com/macaroni-os/macaronictl/pkg/kernel/specs"
+	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
 
 type DracutBuilder struct {
@@ -71,7 +72,8 @@ func (d *DracutBuilder) Build(kf *kernelspecs.KernelFiles, bootDir string) error
 
 	fmt.Print(fmt.Sprintf("Creating initrd image %s...", initrdFile))
 
-	dracutCommand := exec.Command("dracut", args...)
+	dracut := utils.TryResolveBinaryAbsPath("dracut")
+	dracutCommand := exec.Command(dracut, args...)
 	dracutCommand.Stdout = os.Stdout
 	dracutCommand.Stderr = os.Stderr
 
