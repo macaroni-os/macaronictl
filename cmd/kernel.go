@@ -21,7 +21,7 @@ func kernelCmdCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 
 	cmd.AddCommand(
 		cmdkernel.NewListcommand(config),
-		cmdkernel.NewAvailablescommand(config),
+		cmdkernel.NewAvailableCommand(config),
 		cmdkernel.NewGeninitrdCommand(config),
 		cmdkernel.NewProfilesCommand(config),
 	)

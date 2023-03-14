@@ -25,10 +25,10 @@ type KernelsAvailables struct {
 	Kernels []*KernelAvailable `json:"kernels" yaml:"kernels"`
 }
 
-func NewAvailablescommand(config *specs.MacaroniCtlConfig) *cobra.Command {
+func NewAvailableCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	c := &cobra.Command{
-		Use:     "availables",
-		Aliases: []string{"a"},
+		Use:     "available",
+		Aliases: []string{"availables", "a"},
 		Short:   "List available kernels to install.",
 		Long: `Shows kernels available in configured repositories.
 
