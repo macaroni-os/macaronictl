@@ -94,12 +94,12 @@ $> macaronictl kernel list
 
 ```
 
-### Availables (from v0.7.0)
+### Available (from v0.7.0)
 
 Get the list of the available kernel in the configured and enabled repositories:
 
 ```
-$> macaronictl kernel availables
+$> macaronictl kernel available
 |  KERNEL  | KERNEL VERSION | PACKAGE VERSION |    EOL    |  LTS  |  RELEASED  |  TYPE   |
 |----------|----------------|-----------------|-----------|-------|------------|---------|
 | macaroni | 4.14.305       | 4.14.305        | Jan, 2024 | true  | 2017-11-12 | vanilla |
@@ -114,7 +114,7 @@ $> macaronictl kernel availables
 or only the LTS kernels:
 
 ```
-$> macaronictl kernel availables --lts
+$> macaronictl kernel available --lts
 |  KERNEL  | KERNEL VERSION | PACKAGE VERSION |    EOL    | LTS  |  RELEASED  |  TYPE   |
 |----------|----------------|-----------------|-----------|------|------------|---------|
 | macaroni | 4.14.305       | 4.14.305        | Jan, 2024 | true | 2017-11-12 | vanilla |
