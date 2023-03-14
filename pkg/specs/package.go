@@ -4,6 +4,8 @@ See AUTHORS and LICENSE for the license details and contributors.
 */
 package specs
 
+import "fmt"
+
 type Stone struct {
 	Name        string                 `json:"name" yaml:"name"`
 	Category    string                 `json:"category" yaml:"category"`
@@ -31,4 +33,18 @@ type KernelAnnotation struct {
 	Released string `json:"released,omitempty" yaml:"released,omitempty"`
 	Suffix   string `json:"suffix,omitempty" yaml:"suffix,omitempty"`
 	Type     string `json:"vanilla,omitempty" yaml:"vanilla,omitempty"`
+}
+
+func (s *Stone) GetName() string {
+	if s.Category != "" && s.Name != "" {
+		return fmt.Sprintf("%s/%s", s.Category, s.Name)
+	} else if s.Category != "" {
+		return s.Category
+	} else {
+		return s.Name
+	}
+}
+
+func (s *Stone) HumanReadableString() string {
+	return fmt.Sprintf("%s/%s-%s", s.Category, s.Name, s.Version)
 }

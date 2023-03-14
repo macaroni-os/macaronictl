@@ -52,8 +52,18 @@ NOTE: It works only if the repositories are synced.
 				Kernels: []*KernelAvailable{},
 			}
 
+			kMap := make(map[string]bool, 0)
+
 			// Create response struct
 			for _, s := range stones.Stones {
+
+				if _, ok := kMap[s.HumanReadableString()]; ok {
+					// The stone is already been catched from
+					// another repo. I take only one time a specific kernel.
+					continue
+				}
+
+				kMap[s.HumanReadableString()] = true
 
 				a, err := kernel.ParseKernelAnnotations(s)
 				if err != nil {
