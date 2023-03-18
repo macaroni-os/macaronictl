@@ -604,6 +604,7 @@ func doCfg(ofile, cfg string, task *EtcUpdateTask) error {
 				fmt.Sprintf(".%s-copy", filepath.Base(ofile)))
 
 			err = utils.CopyFile(cfgabs, mergeFile)
+			defer os.Remove(mergeFile)
 			if err != nil {
 				return err
 			}
@@ -653,10 +654,6 @@ func doCfg(ofile, cfg string, task *EtcUpdateTask) error {
 			}
 
 			err = os.Remove(cfgabs)
-			if err != nil {
-				return err
-			}
-			err = os.Remove(mergeFile)
 			if err != nil {
 				return err
 			}
