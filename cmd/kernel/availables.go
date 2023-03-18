@@ -13,6 +13,7 @@ import (
 	"github.com/macaroni-os/macaronictl/pkg/logger"
 	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 
+	"github.com/logrusorgru/aurora"
 	tablewriter "github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -48,6 +49,18 @@ NOTE: It works only if the repositories are synced.
 				fmt.Println(err.Error())
 				os.Exit(1)
 			}
+
+			stonesInstalled, err := kernel.InstalledKernels(config)
+			if err != nil {
+				fmt.Println("Error on retrieve installed kernel: " + err.Error())
+				os.Exit(1)
+			}
+
+			kimap := make(map[string]bool)
+			for _, s := range stonesInstalled.Stones {
+				kimap[s.HumanReadableString()] = true
+			}
+			stonesInstalled = nil
 
 			kernels := &KernelsAvailables{
 				Kernels: []*KernelAvailable{},
@@ -113,15 +126,23 @@ NOTE: It works only if the repositories are synced.
 						ltsstr = "true"
 					}
 
+					pversion := k.Stone.Version
 					version, ok := k.Stone.Labels["package.version"]
 					if !ok {
 						version = ""
 					}
 
+					_, installed := kimap[k.Stone.HumanReadableString()]
+
+					if installed {
+						version = fmt.Sprintf("%s", aurora.Bold(version))
+						pversion = fmt.Sprintf("%s", aurora.Bold(pversion))
+					}
+
 					row := []string{
 						k.Annotation.Suffix,
 						version,
-						k.Stone.Version,
+						pversion,
 						k.Annotation.EoL,
 						ltsstr,
 						k.Annotation.Released,
