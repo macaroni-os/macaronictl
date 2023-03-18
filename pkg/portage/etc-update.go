@@ -636,7 +636,10 @@ func doCfg(ofile, cfg string, task *EtcUpdateTask) error {
 			if err != nil {
 				return err
 			}
-			err = os.Rename(mergeFile, fabs)
+			// Here, i can't use rename because rename tries
+			// to create an hardlink that doesn't work for
+			// different devices.
+			err = os.CopyFile(mergeFile, fabs)
 			if err != nil {
 				return err
 			}
@@ -650,6 +653,10 @@ func doCfg(ofile, cfg string, task *EtcUpdateTask) error {
 			}
 
 			err = os.Remove(cfgabs)
+			if err != nil {
+				return err
+			}
+			err = os.Remove(mergeFile)
 			if err != nil {
 				return err
 			}
