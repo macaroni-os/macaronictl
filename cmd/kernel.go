@@ -23,6 +23,7 @@ func kernelCmdCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 		cmdkernel.NewListcommand(config),
 		cmdkernel.NewAvailableCommand(config),
 		cmdkernel.NewModulesCommand(config),
+		cmdkernel.NewSwitchCommand(config),
 		cmdkernel.NewGeninitrdCommand(config),
 		cmdkernel.NewProfilesCommand(config),
 	)
