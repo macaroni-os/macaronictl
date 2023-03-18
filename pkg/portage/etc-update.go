@@ -640,7 +640,7 @@ func doCfg(ofile, cfg string, task *EtcUpdateTask) error {
 			// Here, i can't use rename because rename tries
 			// to create an hardlink that doesn't work for
 			// different devices.
-			err = os.CopyFile(mergeFile, fabs)
+			err = utils.CopyFile(mergeFile, fabs)
 			if err != nil {
 				return err
 			}
