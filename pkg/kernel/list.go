@@ -24,7 +24,7 @@ func searchStones(args []string) (*specs.StonesPack, error) {
 
 	cmd := exec.Command(args[0], args[1:]...)
 
-	log.Debug(fmt.Sprintf("Running search commmands: %s",
+	log.Debug(fmt.Sprintf("Running search commmand: %s",
 		strings.Join(args, " ")))
 
 	cmd.Stdout = utils.NewNopCloseWriter(&outBuffer)
@@ -83,6 +83,16 @@ func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 	args := []string{
 		luet, "search", "-a", "kernel", "-n", "macaroni-full",
 		"-o", "json",
+	}
+
+	return searchStones(args)
+}
+
+func InstalledKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
+	luet := utils.TryResolveBinaryAbsPath("luet")
+	args := []string{
+		luet, "search", "-a", "kernel", "-n", "macaroni-full",
+		"-o", "json", "--installed",
 	}
 
 	return searchStones(args)
