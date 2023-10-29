@@ -27,6 +27,10 @@ type StonesPack struct {
 	Stones []*Stone `json:"stones" yaml:"stones"`
 }
 
+type StonesMap struct {
+	Stones map[string][]*Stone `json:"stones" yaml:"stones"`
+}
+
 type KernelAnnotation struct {
 	EoL      string `json:"eol,omitempty" yaml:"eol,omitempty"`
 	Lts      bool   `json:"lts" yaml:"lts"`
@@ -45,6 +49,31 @@ func (s *Stone) GetName() string {
 	}
 }
 
+func (s *Stone) GetVersion() string {
+	return s.Version
+}
+
 func (s *Stone) HumanReadableString() string {
 	return fmt.Sprintf("%s/%s-%s", s.Category, s.Name, s.Version)
+}
+
+func (sp *StonesPack) ToMap() *StonesMap {
+
+	ans := &StonesMap{
+		Stones: make(map[string][]*Stone, 1),
+	}
+
+	for idx, _ := range sp.Stones {
+		ans.Add(sp.Stones[idx])
+	}
+
+	return ans
+}
+
+func (sm *StonesMap) Add(s *Stone) {
+	if val, ok := sm.Stones[s.GetName()]; ok {
+		sm.Stones[s.GetName()] = append(val, s)
+	} else {
+		sm.Stones[s.GetName()] = []*Stone{s}
+	}
 }
