@@ -1,0 +1,629 @@
+# Browsers catalog with availables options for every browser.
+
+engines:
+  chromium:
+    engine: chromium
+
+    packages:
+      "www-client/brave-bin":
+        package: "www-client/brave-bin"
+        binary: "/usr/bin/brave-bin"
+        source: "/opt/brave/brave"
+
+      "www-client/google-chrome":
+        package: "www-client/google-chrome"
+        binary: /usr/bin/google-chrome-stable
+        source: /opt/google/chrome/google-chrome
+
+      "www-client/google-chrome-beta":
+        package: "www-client/google-chrome-beta"
+        binary: /usr/bin/google-chrome-beta
+        source: /opt/google/chrome-beta/google-chrome
+
+      "www-client/google-chrome-unstable":
+        package: "www-client/google-chrome-unstable"
+        binary: /usr/bin/google-chrome-unstable
+        source: /opt/google/chrome-unstable/google-chrome
+
+    # Based on options described on https://peter.sh/experiments/chromium-command-line-switches/
+    options:
+      - description: |
+          Accept an empty signature when loading a variations seed. This is for testing
+          purposes.
+        option:
+          - accept-empty-variations-seed-signature
+
+      - description: |
+          Specifies Accept-Language to send to servers and expose to JavaScript via the
+          navigator.language DOM property. language[-country] where language is the
+          2 letter code from ISO-639.
+        option:
+          - accept-lang
+
+      - description: |
+          Flag indicating that a resource provider must be set up to provide cast receiver
+          with resources. Apps cannot start until provided resources. This flag implies
+          --alsa-check-close-timeout=0.
+        option:
+          - accept-resource-provider
+
+      - options:
+          - adaboost
+
+      - description: |
+          Add additional capabilities to the AppContainer sandbox on the GPU process.
+        option:
+          - add-gpu-appcontainer-cap
+
+      - description: |
+          Add additional capabilities to the AppContainer sandbox used for XR compositing.
+        option:
+          - add-xr-appcontainer-caps
+
+      - description: |
+          Manually sets additional Private State Tokens key commitments in the network service
+          to the given value, which should be a JSON dictionary satisfying the requirements
+          of TrustTokenKeyCommitmentParser::ParseMultipleIssuers. These keys are available
+          in addition to keys provided by the most recent call to
+          TrustTokenKeyCommitments::Set. For issuers with keys provided through both the
+          command line and TrustTokenKeyCommitments::Set, the keys provided through the
+          command line take precedence. This is because someone testing manually might
+          want to pass additional keys via the command line to a real Chrome release
+          with the component updater enabled, and it would be surprising if the manually-passed
+          keys were overwritten some time after startup when the component updater runs.
+        option:
+          - additional-private-state-token-key-commitment
+
+      - option:
+          - aggressive-cache-discard
+
+      - option:
+          - all
+
+      - option:
+          - all-renderers
+
+      - option:
+          - allarticles
+
+      - description: |
+          Allows plugins to be loaded in the command line for testing.
+        option:
+          - allow-command-line-plugins
+
+      - description: |
+          Allows third-party content included on a page to prompt for a HTTP basic auth
+          username/password pair.
+        option:
+          - allow-cross-origin-auth-prompt
+
+      - description: |
+          Allow access to external pages during web tests.
+        option:
+          - allow-external-pages
+
+      - description: |
+          If this flag is passed, failed policy fetches will not cause profile
+          initialization to fail. This is useful for tests because it means
+          that tests don't have to mock out the policy infrastructure.
+        option:
+          - allow-failed-policy-fetch-for-test
+
+      - description: |
+          By default, file:// URIs cannot read other file:// URIs.
+          This is an override for developers who need the old behavior
+          for testing.
+        option:
+          - allow-file-access-from-files
+
+      - description: |
+          Mute extension errors while working with new manifest version.
+        option:
+          - allow-future-manifest-version
+
+      - description: |
+          Allows non-https URL for background_page for hosted apps.
+        option:
+          - allow-http-background-page
+
+      - description: |
+          Allow non-secure origins to use the screen capture API and the
+          desktopCapture extension API.
+        option:
+          - allow-http-screen-capture
+
+      - description: |
+          Enables TLS/SSL errors on localhost to be ignored (no interstitial,
+          no blocking of requests).
+        option:
+          - allow-insecure-localhost
+
+      - description: |
+          Allows the browser to load extensions that lack a modern manifest
+          when that would otherwise be forbidden.
+        option:
+          - allow-legacy-extension-manifests
+
+      - description: |
+          Allows loopback interface to be added in network list for peer
+          connection.
+        option:
+          - allow-loopback-in-peer-connection
+
+      - description: |
+          Specifies comma-separated list of extension ids or hosts to
+          grant access to CRX file system APIs.
+        option:
+          - allow-nacl-crxfs-api
+
+      - description: |
+          Specifies comma-separated list of extension ids or hosts to grant
+          access to file handle APIs.
+        option:
+          - allow-nacl-file-handle-api
+
+      - description: |
+          Specifies comma-separated list of extension ids or hosts to grant
+          access to TCP/UDP socket APIs.
+        option:
+          - allow-nacl-socket-api
+
+      - description: |
+          When this flag is set, the OS installation UI can be accessed.
+          This allows the user to install from USB to disk.
+        option:
+          - allow-os-install
+
+      - description: |
+          Allows processing of input before a frame has been committed.
+          Used by headless. Look for a way not involving a command line
+          switch.
+        option:
+          - allow-pre-commit-input
+
+      - description: |
+          Allows profiles to be created outside of the user data dir.
+          Various places in Chrome assume that all profiles are within the
+          user data dir. Some tests need to violate that assumption.
+          The switch should be removed after this workaround is no longer
+          needed.
+        option:
+          - allow-profiles-outside-user-dir
+
+      - description: |
+          Allows remote attestation (RA) in dev mode for testing purpose.
+          Usually RA is disabled in dev mode because it will always fail.
+          However, there are cases in testing where we do want to go
+          through the permission flow even in dev mode.
+          This can be enabled by this flag.
+        option:
+          - allow-ra-in-dev-mode
+
+      - option:
+          - allow-running-insecure-content
+
+      - description: |
+          Allows debugging of sandboxed processes (see zygote_main_linux.cc).
+        option:
+          - allow-sandbox-debugging
+
+      - description: |
+          Allows Web Push notifications that do not show a notification.
+        option:
+          - allow-silent-push
+
+      - description: |
+          Allows third party modules to inject by disabling the BINARY_SIGNATURE
+          mitigation policy on Win10+. Also has other effects in ELF.
+        option:
+          - allow-third-party-modules
+
+      - description: |
+          Adds the given extension ID to all the permission allowlists.
+        option:
+          - allowlisted-extension-id
+
+      - description: |
+          Override for the URL used for the ChromeOS Almanac API.
+          Used for local testing with a non-production server
+          (e.g. "--almanac-api-url=http://localhost:8000")
+        option:
+          - almanac-api-url
+
+      - description: |
+          Name of the device the amp mixer should be opened on.
+          If this flag is not specified it will default to the same
+          device as kAlsaVolumeDeviceName.
+        option:
+          - alsa-amp-device-name
+
+      - description: |
+          Name of the simple mixer control element that the ALSA-based
+          media library should use to toggle powersave mode on the system.
+        option:
+          - alsa-amp-element-name
+
+      - description: |
+          Time in ms to wait before closing the PCM handle when no more mixer
+          inputs remain. Assumed to be 0 if --accept-resource-provider is present.
+        option:
+          - alsa-check-close-timeout
+
+      - description: |
+          Flag that enables resampling audio with sample rate below 32kHz up to
+          48kHz. Should be set to true for internal audio products.
+        option:
+          - alsa-enable-upsampling
+
+      - description: |
+          The Alsa device to use when opening an audio input stream.
+        option:
+          - alsa-input-device
+
+      - description: |
+          Name of the device the mute mixer should be opened on.
+          If this flag is not specified it will default to the same device
+          as kAlsaVolumeDeviceName.
+        option:
+          - alsa-mute-device-name
+
+      - description: |
+          Name of the simple mixer control element that the ALSA-based media library should
+          use to mute the system.
+        option:
+          - alsa-mute-element-name
+
+      - description: |
+          Minimum number of available frames for scheduling a transfer.
+        option:
+          - alsa-output-avail-min
+
+      - description: |
+          Size of the ALSA output buffer in frames. This directly sets the latency
+          of the output device. Latency can be calculated by multiplying the sample
+          rate by the output buffer size.
+        option:
+          - alsa-output-buffer-size
+
+      - description: |
+          The Alsa device to use when opening an audio stream.
+        option:
+          - alsa-output-device
+
+      - description: |
+          Size of the ALSA output period in frames. The period of an ALSA output
+          device determines how many frames elapse between hardware interrupts.
+        option:
+          - alsa-output-period-size
+
+      - description: |
+          How many frames need to be in the output buffer before output starts.
+        option:
+          - alsa-output-start-threshold
+
+      - description: |
+          Name of the device the volume control mixer should be opened on.
+          Will use the same device as kAlsaOutputDevice and fall back to "default"
+          if kAlsaOutputDevice is not supplied
+        option:
+          - alsa-volume-device-name
+
+      - description: |
+          Name of the simple mixer control element that the ALSA-based media
+          library should use to control the volume.
+        option:
+          - alsa-volume-element-name
+
+      - description: |
+          Also emit full event trace logs for successful tests.
+        option:
+          - also-emit-success-logs
+
+      - description: |
+          Causes HDCP of the specified type to always be enabled when an external
+          display is connected. Used for HDCP compliance testing on ChromeOS.
+        option:
+          - always-enable-hdcp
+
+      - description: |
+          Always use the complex text path for web tests.
+        option:
+          - always-use-complex-text
+
+      - option:
+          - alwaystrue
+
+      - option:
+          - angle
+
+      - description: |
+          Enables the resume method on animated images.
+        option:
+          - animated-image-resume
+
+      - description: |
+          Scale factor to apply to every animation duration.
+          Must be >= 0.0. This will only apply to LinearAnimation and its subclasses.
+        option:
+          - animation-duration-scale
+
+      - description: |
+          Specifies that the associated value should be launched in
+          "application" mode.
+        option:
+          - app
+
+      - description: |
+          Specifies whether an app launched in kiosk mode was auto launched with
+          zero delay. Used in order to properly restore auto-launched state during
+          session restore flow.
+        option:
+          - app-auto-launched
+
+      - description: |
+          Specifies that the extension-app with the specified id should be launched
+          according to its configuration.
+        option:
+          - app-id
+
+      - description: |
+          Overrides the launch url of an app with the specified url. This is used
+          along with kAppId to launch a given app with the url corresponding to
+          an item in the app's shortcuts menu.
+        option:
+          - app-launch-url-for-shortcuts-menu-item
+
+      - description: |
+          Value of GAIA auth code for --force-app-mode.
+        option:
+          - app-mode-auth-code
+
+      - description: |
+          Value of OAuth2 refresh token for --force-app-mode.
+        option:
+          - app-mode-oauth-token
+
+      - description: |
+          Path for app's OEM manifest file.
+        option:
+          - app-mode-oem-manifest
+
+      - description: |
+          This is used along with kAppId to indicate an app was launched during OS
+          login, and which mode the app was launched in.
+        option:
+          - app-run-on-os-login-mode
+
+      - description: |
+          Allow roaming in the cellular network
+        option:
+          - app-shell-allow-roaming
+
+      - description: |
+          Size for the host window to create (i.e. "800x600").
+        option:
+          - app-shell-host-window-size
+
+      - description: |
+          SSID of the preferred WiFi network.
+        option:
+          - app-shell-preferred-network
+
+      - description: |
+          The URL that the webstore APIs download extensions from.
+          Note. the URL must contain one '%s' for the extension ID.
+        option:
+          - apps-gallery-download-url
+
+      - description: |
+          The update url used by gallery/webstore extensions.
+        option:
+          - apps-gallery-update-url
+
+      - description: |
+          The URL to use for the gallery link in the app launcher.
+        option:
+          - apps-gallery-url
+
+      - description: |
+          Prevents Chrome from quitting when Chrome Apps are open.
+        option:
+          - apps-keep-chrome-alive-in-tests
+
+      - description: |
+          Signals ARC support status on this device. This can take one of
+          the following three values. - none: ARC is not installed on this
+          device. (default) - installed: ARC is installed on this device,
+          but not officially supported. Users can enable ARC only when
+          Finch experiment is turned on. - officially-supported: ARC is
+          installed and supported on this device. So users can enable ARC
+          via settings etc.
+        option:
+          - arc-availability
+
+      - description: |
+          Switch that blocks KeyMint. When KeyMint is blocked, Keymaster is enabled.
+        option:
+          - arc-block-keymint
+
+      - description: |
+          Flag that forces ARC data be cleaned on each start.
+        option:
+          - arc-data-cleanup-on-start
+
+      - description: |
+          Flag that disables ARC app sync flow that installs some apps
+          silently. Used in autotests to resolve racy conditions.
+        option:
+          - arc-disable-app-sync
+
+      - description: |
+          Flag that disables ARC download provider that prevents extra
+          content to be downloaded and installed in context of Play Store
+          and GMS Core.
+        option:
+          - arc-disable-download-provider
+
+      - description: |
+          Used in autotest to disable GMS-core caches which is on by default.
+        option:
+          - arc-disable-gms-core-cache
+
+      - description: |
+          Flag that disables ARC locale sync with Android container. Used
+          in autotest to prevent conditions when certain apps, including Play
+          Store may get restarted. Restarting Play Store may cause random
+          test failures. Enabling this flag would also forces ARC container
+          to use 'en-US' as a locale and 'en-US,en' as preferred languages.
+        option:
+          - arc-disable-locale-sync
+
+      - description: |
+          Used to disable GMS scheduling of media store periodic indexing and
+          corpora maintenance tasks. Used in performance tests to prevent
+          running during testing which can cause unstable results or CPU not
+          idle pre-test failures.
+        option:
+          - arc-disable-media-store-maintenance
+
+      - description: |
+          Flag that disables ARC Play Auto Install flow that installs set of
+          predefined apps silently. Used in autotests to resolve racy conditions.
+        option:
+          - arc-disable-play-auto-install
+
+      - description: |
+          Used in autotest to disable TTS cache which is on by default.
+        option:
+          - arc-disable-tts-cache
+
+      - description: |
+          Flag that disables ureadahead completely, including host and guest
+          parts. To enable only guest ureadahead, please use
+          --arcvm-ureadahead-mode=readahead in combination with this switch.
+
+        option:
+          - arc-disable-ureadahead
+
+      - description: |
+          Flag that indicates ARC images are formatted with EROFS (go/arcvm-erofs).
+        option:
+          - arc-erofs
+
+      - description: |
+          If set, forces ARC apk cache to be enabled for testing.
+        option:
+          - arc-force-enable-apk-cache
+
+      - description: |
+          If set, forces post boot dexopt to run immediately without device idle
+          requirement.
+        option:
+          - arc-force-post-boot-dex-opt
+
+      - description: |
+          Flag that forces the OptIn ui to be shown. Used in tests.
+        option:
+          - arc-force-show-optin-ui
+
+      - description: |
+          Flag that enables developer options needed to generate an ARC Play
+          Auto Install roster. Used manually by developers
+        option:
+          - arc-generate-play-auto-install
+
+      - description: |
+          Flag that indicates host ureadahead generation session. Note,
+          it is still valid even in case of kArcDisableUreadahead is set.
+          Refactor this and |kArcDisableUreadahead| to mode enum.
+        option:
+          - arc-host-ureadahead-generation
+
+      - description: |
+          Write ARC++ install events to chrome log for integration test.
+        option:
+          - arc-install-event-chrome-log-for-tests
+
+      - description: |
+          Used in autotest to specifies how to handle packages cache. Can
+          be copy - copy resulting packages.xml to the temporary directory.
+          skip-copy - skip initial packages cache setup and copy resulting
+          packages.xml to the temporary directory.
+        option:
+          - arc-packages-cache-mode
+
+      - description: |
+          Used in autotest to forces Play Store auto-update state. Can be on
+          - auto-update is forced on. off - auto-update is forced off.
+        option:
+          - arc-play-store-auto-update
+
+      - description: |
+          Set the scale for ARC apps. This is in DPI. e.g. 280 DPI is ~ 1.75 device scale
+          factor. See https://source.android.com/compatibility/android-cdd#3_7_runtime_compatibility
+          for list of supported DPI values.
+        option:
+          - arc-scale
+
+      - description: |
+          Defines how to start ARC. This can take one of the following
+          values: - always-start automatically start with Play Store UI support.
+          - always-start-with-no-play-store automatically start without Play Store UI.
+          If it is not set, then ARC is started in default mode.
+        option:
+          - arc-start-mode
+
+      - description: |
+          Sets ARC Terms Of Service hostname url for testing.
+        option:
+          - arc-tos-host-for-tests
+
+      - description: |
+          Flag that indicates ARC is using dev caches generated by data collector
+          in Uprev rather than caches from CrOS build stage for arccachesetup service.
+        option:
+          - arc-use-dev-caches
+
+      - description: |
+          Sets the mode of operation for ureadahead during ARCVM boot. If this switch is
+          not set, ARCVM ureadahead will check for the presence and age of pack file and
+          reads ahead files to page cache for improved boot performance. readahead (default)
+          - used during production and is equivalent to no switch being set. This is used in
+          tast test to explicitly turn on guest ureadahead. generate - used during Android PFQ
+          data collector to pre-generate pack file and upload to Google Cloud as build artifact
+          for CrOS build image. disabled - used for test purpose to disable ureadahead during
+          ARCVM boot.
+        option:
+          - arcvm-ureadahead-mode
+
+      - description: |
+          Madvises the kernel to use Huge Pages for guest memory.
+        option:
+          - arcvm-use-hugepages
+
+      - description: |
+          Flag to launch tests in the browser process.
+        option:
+          - as-browser
+
+      - description: |
+          Allows the Ash shelf to apply the default pin layout without waiting for Sync
+          to download data from the server (which many tests can't achieve).
+        option:
+          - ash-allow-default-shelf-pin-layout-ignoring-sync
+
+      - description: |
+          Allows bypassing the GlanceablesEnabled pref. This requires that the
+          kGlanceablesV2 feature is enabled as well. Intended to force enable glanceables
+          for testing.
+        option:
+          - ash-bypass-glanceables-pref
+
+
+
+      - description: |
+          Disables GPU hardware acceleration. If software renderer is not in place,
+          then the GPU process won't launch.
+        default: true
+        option:
+          - disable-gpu

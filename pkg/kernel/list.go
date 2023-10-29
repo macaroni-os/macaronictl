@@ -5,56 +5,12 @@ See AUTHORS and LICENSE for the license details and contributors.
 package kernel
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"os/exec"
-	"strings"
 
-	"github.com/macaroni-os/macaronictl/pkg/logger"
+	"github.com/macaroni-os/macaronictl/pkg/anise"
 	specs "github.com/macaroni-os/macaronictl/pkg/specs"
 	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
-
-func searchStones(args []string) (*specs.StonesPack, error) {
-	log := logger.GetDefaultLogger()
-	var errBuffer bytes.Buffer
-	var outBuffer bytes.Buffer
-	var ans specs.StonesPack
-
-	cmd := exec.Command(args[0], args[1:]...)
-
-	log.Debug(fmt.Sprintf("Running search commmand: %s",
-		strings.Join(args, " ")))
-
-	cmd.Stdout = utils.NewNopCloseWriter(&outBuffer)
-	cmd.Stderr = utils.NewNopCloseWriter(&errBuffer)
-
-	err := cmd.Start()
-	if err != nil {
-		return nil, err
-	}
-
-	err = cmd.Wait()
-	if err != nil {
-		return nil, err
-	}
-
-	if cmd.ProcessState.ExitCode() != 0 {
-		return nil, fmt.Errorf("luet search exiting with %s: %s",
-			cmd.ProcessState.ExitCode(),
-			errBuffer.String())
-	}
-
-	// Read json output.
-	err = json.Unmarshal(outBuffer.Bytes(), &ans)
-	if err != nil {
-		return nil, fmt.Errorf("Error on unmarshal json data: %s",
-			err.Error())
-	}
-
-	return &ans, nil
-}
 
 func AvailableExtraModules(kernelBranch string, installed bool,
 	config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
@@ -75,7 +31,7 @@ func AvailableExtraModules(kernelBranch string, installed bool,
 		args = append(args, "--installed")
 	}
 
-	return searchStones(args)
+	return anise.SearchStones(args)
 }
 
 func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
@@ -85,7 +41,7 @@ func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 		"-o", "json",
 	}
 
-	return searchStones(args)
+	return anise.SearchStones(args)
 }
 
 func InstalledKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
@@ -95,7 +51,7 @@ func InstalledKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 		"-o", "json", "--installed",
 	}
 
-	return searchStones(args)
+	return anise.SearchStones(args)
 }
 
 func ParseKernelAnnotations(s *specs.Stone) (*specs.KernelAnnotation, error) {

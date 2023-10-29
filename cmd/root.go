@@ -19,7 +19,7 @@ import (
 const (
 	cliName = `Copyright (c) 2020-2023 Macaroni OS - Daniele Rondina
 
-Macaroni Linux System Management Tool`
+Macaroni OS System Management Tool`
 
 	MACARONICTL_VERSION = `0.8.0`
 )
@@ -62,6 +62,7 @@ func initCommand(rootCmd *cobra.Command, config *specs.MacaroniCtlConfig) {
 		envUpdateCommand(config),
 		etcUpdateCommand(config),
 		kernelCmdCommand(config),
+		browserCmdCommand(config),
 	)
 }
 
