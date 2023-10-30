@@ -185,3 +185,128 @@ Global Flags:
   -d, --debug           Enable debug output.
 ```
 
+## Browser subcommands (from v0.9.0)
+
+In order to configure default startup options of the available browsers,
+`macaronictl` supplies commands to create a script wrapper with default
+options to use, options that could be customized by the user with the same tool.
+
+At the moment the supported browsers are `Brave` and `Google Chrome`.
+
+This needs is started with the upgrade of Chromium engine 117.x where the default flags
+are related to the 3d acceleration, this breaks old computers with poor cards.
+We prefer to support solutions with poor hardware by default.
+
+```bash
+$> macaronictl browser --help
+Manage browsers binaries and their default bootstrap options.
+
+Usage:
+   browser [command]
+
+Aliases:
+  browser, b
+
+Available Commands:
+  available   List available browsers and their customization.
+  configure   Configure bootstrap options of a specific browser.
+
+Flags:
+  -h, --help   help for browser
+
+Global Flags:
+  -c, --config string   Macaronictl configuration file
+  -d, --debug           Enable debug output.
+
+Use " browser [command] --help" for more information about a command.
+```
+
+### available
+
+The `available` command show the list of available browsers and if it's present a system configuration and/or a user customization
+of the startup flags.
+
+```bash
+$  macaronictl  browser available
+|              PACKAGE              | PACKAGE VERSION | SYSTEM OPTIONS | USER OPTIONS |  ENGINE  |            BINARIES             |
+|-----------------------------------|-----------------|----------------|--------------|----------|---------------------------------|
+| www-client/brave-bin              | v1.59.117       | true           | true         | chromium | /usr/bin/brave-bin              |
+| www-client/firefox                | v118.0.2        | false          | false        | N/A      | N/A                             |
+| www-client/firefox-beta-bin       | v119.0          | false          | false        | N/A      | N/A                             |
+| www-client/firefox-bin            | v118.0.2        | false          | false        | N/A      | N/A                             |
+| www-client/google-chrome          | v118.0.5993.70  | false          | false        | chromium | /usr/bin/google-chrome-stable   |
+| www-client/google-chrome-beta     | v119.0.6045.21  | false          | false        | chromium | /usr/bin/google-chrome-beta     |
+| www-client/google-chrome-unstable | v120.0.6062.2   | false          | false        | chromium | /usr/bin/google-chrome-unstable |
+| www-client/opera                  | v99.0.4788.9+1  | false          | false        | N/A      | N/A                             |
+| www-client/vivaldi                | v6.2.3105.58    | false          | false        | N/A      | N/A                             |
+| www-client/vivaldi-snapshot       | v6.4.3152.3     | false          | false        | N/A      | N/A                             |
+```
+
+### configure
+
+The `configure` supply a way to setup the browser wrapper script used to start the binaries and configure the startup flags at system
+level or at user level.
+
+```bash
+$> macaronictl  browser conf --help
+Shows browsers available in configured repositories.
+
+# Generate the system yaml file with the default options from catalog.
+$> macaronictl browser conf www-client/brave-bin --system --defaults
+
+# Generate the user yaml file with the default options from catalog.
+$> macaronictl browser conf www-client/brave-bin --user --defaults
+
+# Generate the user yaml file without options for the selected package.
+$> macaronictl browser conf www-client/brave-bin --user --without-opts
+
+# Generate the user yaml file awithout options and the user include file
+# for the selected package.
+$> macaronictl browser conf www-client/brave-bin --user --without-opts --exec
+
+# Generate the binary script of the package and the system includes scripts.
+# Normally, this command is executed on package finalizer.
+$> macaronictl browser conf www-client/brave-bin --exec --system  --defaults
+
+# Generate the user include and YAML files with the default options
+$> macaronictl browser conf www-client/brave-bin --exec --user  --defaults
+
+# Remove the user include file.
+$> macaronictl browser conf www-client/brave-bin --purge --user
+
+# Remove the sytem include file and the binary of the package
+$> macaronictl browser conf www-client/brave-bin --purge --system
+
+# Update the user include file. Normally, used when the user YAML file
+# is been modified manually.
+$> macaronictl browser conf www-client/brave-bin --user --only-update-includes
+
+# Update the system include file. Normally, used when the user YAML file
+# is been modified manually.
+$> macaronictl browser conf www-client/brave-bin --system --only-update-includes
+
+NOTE: It works only if the repositories are synced.
+
+Usage:
+   browser configure [pkg] [flags]
+
+Aliases:
+  configure, conf, c
+
+Flags:
+      --catalog-file string    Specify the directory of the catalog file of all engines options. (default "/usr/share/macaroni/browsers/catalog")
+      --defaults               Set catalog defaults options to specified package.
+      --exec                   Update script of the binary. Need root permissions.
+  -h, --help                   help for configure
+      --home-dir string        Override the directory of the user with engines options. (default "/home/geaaru/.local/share/macaroni/browsers")
+      --only-update-includes   Update script includes file.
+      --purge                  Remove system option from system. Need root permissions.
+      --system                 Set bootstrap option on system. Need root permissions.
+      --system-dir string      Override the directory of the system configuration with engines options. (default "/etc/macaroni/browsers")
+      --user                   Set bootstrap option for user.
+      --without-opts           Disable all options to specified package.
+
+Global Flags:
+  -c, --config string   Macaronictl configuration file
+  -d, --debug           Enable debug output.
+```

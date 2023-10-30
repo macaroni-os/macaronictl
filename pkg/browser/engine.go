@@ -36,6 +36,10 @@ func (e *BrowserEngine) SetPackage(pkg *BrowserPackage) {
 	e.Packages[pkg.Package] = pkg
 }
 
+func (e *BrowserEngine) NumPackages() int {
+	return len(e.Packages)
+}
+
 func (e *BrowserEngine) GetPackage(pname string) (*BrowserPackage, bool) {
 	ans, ok := e.Packages[pname]
 	return ans, ok

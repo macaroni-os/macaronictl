@@ -21,7 +21,7 @@ func NewAvailableCommand(config *specs.MacaroniCtlConfig) *cobra.Command {
 	c := &cobra.Command{
 		Use:     "available",
 		Aliases: []string{"availables", "a"},
-		Short:   "List available browsers to install.",
+		Short:   "List available browsers and their customization.",
 		Long: `Shows browsers available in configured repositories.
 
 $ macaronictl browser availables
@@ -108,8 +108,7 @@ NOTE: It works only if the repositories are synced.
 					}
 
 					homePkg := configurator.GetHomeConfig().GetPackage(s.GetName())
-					if !configurator.GetHomeConfig().IsEmpty() && homePkg != nil &&
-						homePkg.HasOptions() {
+					if !configurator.GetHomeConfig().IsEmpty() && homePkg != nil {
 						withHomeOpts = true
 						binaries = homePkg.Binary
 					}

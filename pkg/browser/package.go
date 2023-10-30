@@ -16,11 +16,13 @@ func (p *BrowserPackage) ClearOptions() {
 	p.EnabledOptions = []*BrowserOpt{}
 }
 
-func (p *BrowserPackage) GetAllOptions() []string {
+func (p *BrowserPackage) GetAllOptions(dash string) []string {
 	ans := []string{}
 
 	for i, _ := range p.EnabledOptions {
-		ans = append(ans, p.EnabledOptions[i].Option...)
+		for j, _ := range p.EnabledOptions[i].Option {
+			ans = append(ans, dash+p.EnabledOptions[i].Option[j])
+		}
 	}
 
 	return ans
