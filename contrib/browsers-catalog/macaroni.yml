@@ -627,3 +627,9 @@ engines:
         default: true
         option:
           - disable-gpu
+
+      - description: |
+          Disables the use of a 3D software rasterizer.
+        default: true
+        option:
+          - disable-software-rasterizer
