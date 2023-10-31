@@ -153,12 +153,16 @@ NOTE: It works only if the repositories are synced.
 		},
 	}
 
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+	// Ignoring errors to avoid exceptions on
+	// containers running macaronictl env-update.
+	// Without homedir the command will be interrupted
+	// on PreRun.
+	homeDir, _ := os.UserHomeDir()
+
+	browserConfigsHomedir := ""
+	if homeDir != "" {
+		browserConfigsHomedir = filepath.Join(homeDir, ".local/share/macaroni/browsers")
 	}
-	browserConfigsHomedir := filepath.Join(homeDir, ".local/share/macaroni/browsers")
 
 	flags := c.Flags()
 	flags.Bool("json", false, "JSON output")
