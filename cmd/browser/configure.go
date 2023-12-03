@@ -49,7 +49,7 @@ $> macaronictl browser conf www-client/brave-bin --exec --user  --defaults
 # Remove the user include file.
 $> macaronictl browser conf www-client/brave-bin --purge --user
 
-# Remove the sytem include file and the binary of the package
+# Remove the system include file and the binary of the package
 $> macaronictl browser conf www-client/brave-bin --purge --system
 
 # Update the user include file. Normally, used when the user YAML file

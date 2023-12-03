@@ -24,7 +24,7 @@ func SearchStones(args []string) (*specs.StonesPack, error) {
 
 	cmd := exec.Command(args[0], args[1:]...)
 
-	log.Debug(fmt.Sprintf("Running search commmand: %s",
+	log.Debug(fmt.Sprintf("Running search command: %s",
 		strings.Join(args, " ")))
 
 	cmd.Stdout = utils.NewNopCloseWriter(&outBuffer)

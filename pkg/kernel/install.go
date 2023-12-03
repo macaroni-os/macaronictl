@@ -26,7 +26,7 @@ func InstallPackages(k *specs.Stone, modules []*specs.Stone) error {
 	}
 
 	cmd := exec.Command(args[0], args[1:]...)
-	log.Debug(fmt.Sprintf("Running install commmand: %s",
+	log.Debug(fmt.Sprintf("Running install command: %s",
 		strings.Join(args, " ")))
 
 	cmd.Stdout = os.Stdout
