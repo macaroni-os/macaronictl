@@ -19,8 +19,8 @@ func (p *BrowserPackage) ClearOptions() {
 func (p *BrowserPackage) GetAllOptions(dash string) []string {
 	ans := []string{}
 
-	for i, _ := range p.EnabledOptions {
-		for j, _ := range p.EnabledOptions[i].Option {
+	for i := range p.EnabledOptions {
+		for j := range p.EnabledOptions[i].Option {
 			ans = append(ans, dash+p.EnabledOptions[i].Option[j])
 		}
 	}
@@ -46,12 +46,12 @@ func (p *BrowserPackage) Merge(m *BrowserPackage) error {
 			p.Package, m.Package)
 	}
 
-	for i, _ := range p.EnabledOptions {
+	for i := range p.EnabledOptions {
 		mOpts[p.EnabledOptions[i].Option[0]] = p.EnabledOptions[i]
 	}
 
 	// Check if add new options
-	for i, _ := range m.EnabledOptions {
+	for i := range m.EnabledOptions {
 		if _, present := mOpts[m.EnabledOptions[i].Option[0]]; !present {
 			p.EnabledOptions = append(
 				p.EnabledOptions,

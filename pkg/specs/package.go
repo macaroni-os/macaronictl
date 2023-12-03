@@ -63,7 +63,7 @@ func (sp *StonesPack) ToMap() *StonesMap {
 		Stones: make(map[string][]*Stone, 1),
 	}
 
-	for idx, _ := range sp.Stones {
+	for idx := range sp.Stones {
 		ans.Add(sp.Stones[idx])
 	}
 

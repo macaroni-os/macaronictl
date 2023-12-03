@@ -58,7 +58,7 @@ func (c *BrowsersCatalog) GetEngine(ename string) *BrowserEngine {
 func (c *BrowsersCatalog) GetEngineAndPackage(pname string) (
 	*BrowserEngine, *BrowserPackage) {
 
-	for i, _ := range c.Engines {
+	for i := range c.Engines {
 		p, present := c.Engines[i].GetPackage(pname)
 		if present {
 			return c.Engines[i], p
@@ -96,7 +96,7 @@ func (c *BrowsersCatalog) WriteEngineConfigs(dirname string) error {
 		}
 	}
 
-	for k, _ := range c.Engines {
+	for k := range c.Engines {
 		engineFile := filepath.Join(dirname, k+".yml")
 		err := c.Engines[k].WriteConfig(engineFile)
 		if err != nil {

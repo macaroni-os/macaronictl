@@ -23,7 +23,7 @@ func NewBrowserEngine(name string) *BrowserEngine {
 
 func (e *BrowserEngine) Merge(m *BrowserEngine) {
 	// Fornow just merge packages options
-	for k, _ := range m.Packages {
+	for k := range m.Packages {
 		if _, ok := e.Packages[k]; ok {
 			e.Packages[k].Merge(m.Packages[k])
 		} else {
@@ -47,7 +47,7 @@ func (e *BrowserEngine) GetPackage(pname string) (*BrowserPackage, bool) {
 
 func (e *BrowserEngine) GetDefaultOptions() []*BrowserOpt {
 	ans := []*BrowserOpt{}
-	for i, _ := range e.Options {
+	for i := range e.Options {
 		if e.Options[i].Default {
 			ans = append(ans, e.Options[i])
 		}
