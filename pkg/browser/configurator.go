@@ -16,7 +16,7 @@ import (
 
 const (
 	shWrapper = `#!/bin/bash
-# Copyright © 2021-2023 Macaroni OS Linux
+# Copyright © 2021-2024 Macaroni OS Linux
 # Description: Wrapper for package %s generated with macaronictl.
 
 if [ -n "$DEBUG" ] ; then
@@ -40,11 +40,11 @@ else
 	fi
 fi
 
-${source} ${opts}
+${source} ${opts} $@
 exit $?
 `
 
-	shInclude = `# Copyright © 2021-2023 Macaroni OS Linux
+	shInclude = `# Copyright © 2021-2024 Macaroni OS Linux
 # Description: Startup options of the package %s generated with macaronictl.
 
 opts="%s"
