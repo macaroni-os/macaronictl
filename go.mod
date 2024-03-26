@@ -1,6 +1,6 @@
 module github.com/macaroni-os/macaronictl
 
-go 1.19
+go 1.20
 
 require (
 	github.com/kyokomi/emoji v2.2.4+incompatible
