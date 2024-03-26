@@ -33,9 +33,10 @@ NOTE: It works only if the repositories are synced.
 			jsonOutput, _ := cmd.Flags().GetBool("json")
 			installed, _ := cmd.Flags().GetBool("installed")
 			kBranch, _ := cmd.Flags().GetString("kernel-branch")
+			kType, _ := cmd.Flags().GetString("kernel-type")
 
 			stones, err := kernel.AvailableExtraModules(
-				kBranch, installed, config,
+				kBranch, kType, installed, config,
 			)
 			if err != nil {
 				fmt.Println("Error on retrieve package list: " + err.Error())
@@ -66,6 +67,7 @@ NOTE: It works only if the repositories are synced.
 					"Package",
 					"Package Version",
 					"Kernel Branch",
+					"Kernel Type",
 					"Kernel Version",
 					"Repository",
 				})
@@ -73,15 +75,23 @@ NOTE: It works only if the repositories are synced.
 				// Create response struct
 				for _, s := range stones.Stones {
 
+					kcat := "kernel-"
 					version, ok := s.Labels["kernel.version"]
 					if !ok {
 						version = ""
+					}
+					ktype, ok := s.Labels["kernel.type"]
+					if !ok {
+						ktype = ""
+					} else if ktype == "zen" {
+						kcat = "kernel-zen-"
 					}
 
 					row := []string{
 						s.GetName(),
 						s.Version,
-						strings.ReplaceAll(s.Category, "kernel-", ""),
+						strings.ReplaceAll(s.Category, kcat, ""),
+						ktype,
 						version,
 						s.Repository,
 					}
@@ -99,6 +109,7 @@ NOTE: It works only if the repositories are synced.
 	flags.Bool("json", false, "JSON output")
 	flags.BoolP("installed", "i", false, "Show only installed modules. (Requires root permission)")
 	flags.StringP("kernel-branch", "b", "", "Filter for a specific kernel branch.")
+	flags.StringP("kernel-type", "t", "", "Filter for a specific kernel type.")
 
 	return c
 }
