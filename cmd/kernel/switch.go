@@ -51,7 +51,9 @@ NOTE: It works only if the repositories are synced and the branch
 			log := logger.GetDefaultLogger()
 
 			kType, _ := cmd.Flags().GetString("type")
+			dryRun, _ := cmd.Flags().GetBool("dry-run")
 			from, _ := cmd.Flags().GetString("from")
+			fromType, _ := cmd.Flags().GetString("from-type")
 
 			// Parse input argument
 			param := args[0]
@@ -112,6 +114,10 @@ NOTE: It works only if the repositories are synced and the branch
 					continue
 				}
 
+				if a.Type != kType {
+					continue
+				}
+
 				if s.Category == "kernel-"+requiredBranch {
 					candidate = s
 					break
@@ -125,7 +131,7 @@ NOTE: It works only if the repositories are synced and the branch
 
 			// Retrieve installed extra modules.
 			availableInstMods, err := kernel.AvailableExtraModules(
-				from, true, config,
+				from, fromType, true, config,
 			)
 			if err != nil {
 				fmt.Println("Error on retrieve installed kernel modules: " + err.Error())
@@ -142,7 +148,7 @@ NOTE: It works only if the repositories are synced and the branch
 			}
 
 			availableModules, err := kernel.AvailableExtraModules(
-				requiredBranch, false, config,
+				requiredBranch, kType, false, config,
 			)
 			if err != nil {
 				fmt.Println("Error on retrieve available kernel modules: " + err.Error())
@@ -167,10 +173,12 @@ NOTE: It works only if the repositories are synced and the branch
 				}
 			}
 
-			err = kernel.InstallPackages(candidate, candidateModules)
-			if err != nil {
-				fmt.Println(err.Error())
-				os.Exit(1)
+			if !dryRun {
+				err = kernel.InstallPackages(candidate, candidateModules)
+				if err != nil {
+					fmt.Println(err.Error())
+					os.Exit(1)
+				}
 			}
 
 		},
@@ -178,8 +186,10 @@ NOTE: It works only if the repositories are synced and the branch
 
 	flags := c.Flags()
 	flags.Bool("purge", false, "Purge the installed kernels.")
+	flags.Bool("dry-run", false, "Dry run installation and show candidates.")
 	flags.String("type", "vanilla", "Define the kernel type to use.")
 	flags.String("from", "", "Define the kernel branch to replace.")
+	flags.String("from-type", "vanilla", "Define the type of the kernel used to retrieve the list of installed modules.")
 
 	return c
 }
