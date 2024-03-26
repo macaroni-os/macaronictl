@@ -26,6 +26,12 @@ func GetDefaultKernelProfiles() []kernelspecs.KernelType {
 			Type:     "vanilla",
 			WithArch: true,
 		},
+		{
+			Name:     "Macaroni Zen Kernel",
+			Suffix:   "macaroni",
+			Type:     "zen",
+			WithArch: true,
+		},
 	}
 }
 

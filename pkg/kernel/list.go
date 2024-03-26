@@ -12,18 +12,30 @@ import (
 	"github.com/macaroni-os/macaronictl/pkg/utils"
 )
 
-func AvailableExtraModules(kernelBranch string, installed bool,
+func AvailableExtraModules(kernelBranch, kernelType string, installed bool,
 	config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
+	ans := &specs.StonesPack{
+		Stones: []*specs.Stone{},
+	}
 
 	luet := utils.TryResolveBinaryAbsPath("luet")
 	args := []string{
 		luet, "search", "-a", "kernel_module",
-		"-o", "json",
+		"-o", "json", "--label", "kernel.type",
 	}
 
 	if kernelBranch != "" {
+		var category string
+
+		switch kernelType {
+		case "zen":
+			category = "kernel-zen-" + kernelBranch
+		default:
+			category = "kernel-" + kernelBranch
+		}
+
 		args = append(args, []string{
-			"--category", "kernel-" + kernelBranch,
+			"--category", category,
 		}...)
 	}
 
@@ -31,13 +43,30 @@ func AvailableExtraModules(kernelBranch string, installed bool,
 		args = append(args, "--installed")
 	}
 
-	return anise.SearchStones(args)
+	stones, err := anise.SearchStones(args)
+	if err != nil {
+		return ans, err
+	}
+
+	// Filter for modules with the same kernel type.
+	if kernelType != "" {
+		for idx := range stones.Stones {
+			if stones.Stones[idx].GetLabelValue("kernel.type") == kernelType {
+				ans.Stones = append(ans.Stones, stones.Stones[idx])
+			}
+		}
+
+	} else {
+		ans = stones
+	}
+
+	return ans, nil
 }
 
 func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
 	luet := utils.TryResolveBinaryAbsPath("luet")
 	args := []string{
-		luet, "search", "-a", "kernel", "-n", "macaroni-full",
+		luet, "search", "-a", "kernel",
 		"-o", "json",
 	}
 
@@ -47,7 +76,7 @@ func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 func InstalledKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
 	luet := utils.TryResolveBinaryAbsPath("luet")
 	args := []string{
-		luet, "search", "-a", "kernel", "-n", "macaroni-full",
+		luet, "search", "-a", "kernel",
 		"-o", "json", "--installed",
 	}
 

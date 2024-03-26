@@ -39,6 +39,13 @@ type KernelAnnotation struct {
 	Type     string `json:"vanilla,omitempty" yaml:"vanilla,omitempty"`
 }
 
+func (s *Stone) GetLabelValue(label string) string {
+	if val, ok := s.Labels[label]; ok {
+		return val
+	}
+	return ""
+}
+
 func (s *Stone) GetName() string {
 	if s.Category != "" && s.Name != "" {
 		return fmt.Sprintf("%s/%s", s.Category, s.Name)
