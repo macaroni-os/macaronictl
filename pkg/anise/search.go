@@ -41,7 +41,7 @@ func SearchStones(args []string) (*specs.StonesPack, error) {
 	}
 
 	if cmd.ProcessState.ExitCode() != 0 {
-		return nil, fmt.Errorf("luet search exiting with %s: %s",
+		return nil, fmt.Errorf("anise search exiting with %s: %s",
 			cmd.ProcessState.ExitCode(),
 			errBuffer.String())
 	}

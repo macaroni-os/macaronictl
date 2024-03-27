@@ -18,9 +18,9 @@ func AvailableExtraModules(kernelBranch, kernelType string, installed bool,
 		Stones: []*specs.Stone{},
 	}
 
-	luet := utils.TryResolveBinaryAbsPath("luet")
+	aniseBin := utils.TryResolveBinaryAbsPath("anise")
 	args := []string{
-		luet, "search", "-a", "kernel_module",
+		aniseBin, "search", "-a", "kernel_module",
 		"-o", "json", "--label", "kernel.type",
 	}
 
@@ -69,9 +69,9 @@ func AvailableExtraModules(kernelBranch, kernelType string, installed bool,
 }
 
 func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
-	luet := utils.TryResolveBinaryAbsPath("luet")
+	aniseBin := utils.TryResolveBinaryAbsPath("anise")
 	args := []string{
-		luet, "search", "-a", "kernel",
+		aniseBin, "search", "-a", "kernel",
 		"-o", "json",
 	}
 
@@ -79,9 +79,9 @@ func AvailableKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error
 }
 
 func InstalledKernels(config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
-	luet := utils.TryResolveBinaryAbsPath("luet")
+	aniseBin := utils.TryResolveBinaryAbsPath("anise")
 	args := []string{
-		luet, "search", "-a", "kernel",
+		aniseBin, "search", "-a", "kernel",
 		"-o", "json", "--installed",
 	}
 

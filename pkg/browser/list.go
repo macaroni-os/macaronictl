@@ -19,9 +19,9 @@ import (
 func AvailableBrowsers(installed bool,
 	config *specs.MacaroniCtlConfig) (*specs.StonesPack, error) {
 
-	luet := utils.TryResolveBinaryAbsPath("luet")
+	aniseBin := utils.TryResolveBinaryAbsPath("anise")
 	args := []string{
-		luet, "search", "-a", "desktop_browser",
+		aniseBin, "search", "-a", "desktop_browser",
 		"-o", "json",
 	}
 

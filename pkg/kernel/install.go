@@ -17,9 +17,9 @@ import (
 
 func InstallPackages(k *specs.Stone, modules []*specs.Stone) error {
 	log := logger.GetDefaultLogger()
-	luet := utils.TryResolveBinaryAbsPath("luet")
+	aniseBin := utils.TryResolveBinaryAbsPath("anise")
 	args := []string{
-		luet, "i", k.GetName(),
+		aniseBin, "i", k.GetName(),
 	}
 	for _, s := range modules {
 		args = append(args, s.GetName())
@@ -43,7 +43,7 @@ func InstallPackages(k *specs.Stone, modules []*specs.Stone) error {
 	}
 
 	if cmd.ProcessState.ExitCode() != 0 {
-		return fmt.Errorf("luet install exiting with %s.",
+		return fmt.Errorf("anise install exiting with %s.",
 			cmd.ProcessState.ExitCode())
 	}
 
