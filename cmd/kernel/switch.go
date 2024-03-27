@@ -1,5 +1,5 @@
 /*
-Copyright © 2021-2023 Macaroni OS Linux
+Copyright © 2021-2024 Macaroni OS Linux
 See AUTHORS and LICENSE for the license details and contributors.
 */
 package cmdkernel
@@ -48,7 +48,6 @@ NOTE: It works only if the repositories are synced and the branch
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			log := logger.GetDefaultLogger()
 
 			kType, _ := cmd.Flags().GetString("type")
 			dryRun, _ := cmd.Flags().GetBool("dry-run")
@@ -59,6 +58,8 @@ NOTE: It works only if the repositories are synced and the branch
 			param := args[0]
 			requiredKernel := param[0:strings.Index(param, "@")]
 			requiredBranch := param[strings.Index(param, "@")+1:]
+
+			log := logger.GetDefaultLogger()
 
 			// Retrieve the installed kernels
 			installed, err := kernel.InstalledKernels(config)
@@ -139,12 +140,19 @@ NOTE: It works only if the repositories are synced and the branch
 			}
 
 			kextraModsMap := make(map[string]*specs.Stone, 0)
+			sourceCategoryPrefix := "kernel-"
+			switch fromType {
+			case "zen":
+				sourceCategoryPrefix = "kernel-zen-"
+			}
+
 			// Prepare map of all installed module
 			for _, s := range availableInstMods.Stones {
-				if from != "" && s.Category != "kernel-"+from {
+				if from != "" && s.Category != sourceCategoryPrefix+from {
 					continue
 				}
 				kextraModsMap[s.Name] = s
+				log.Debug("Found module", s.Name)
 			}
 
 			availableModules, err := kernel.AvailableExtraModules(
