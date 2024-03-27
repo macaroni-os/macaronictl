@@ -40,8 +40,15 @@ func NewKernelImageFromFile(t *KernelType, file string) (*KernelImage, error) {
 		i += 1
 	}
 
-	ans.Version = words[i]
-	file = file[len(words[i]):]
+	if len(words) > 3 {
+		// POST: the version could contains a suffix
+		ans.Version = words[i] + "-" + words[i+1]
+		file = file[len(words[i])+1+len(words[i+1]):]
+		i += 1
+	} else {
+		ans.Version = words[i]
+		file = file[len(words[i]):]
+	}
 
 	if t.Suffix != "" {
 		ans.Suffix = file[1:]
