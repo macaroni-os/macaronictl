@@ -51,7 +51,12 @@ func AvailableExtraModules(kernelBranch, kernelType string, installed bool,
 	// Filter for modules with the same kernel type.
 	if kernelType != "" {
 		for idx := range stones.Stones {
-			if stones.Stones[idx].GetLabelValue("kernel.type") == kernelType {
+			pkgKernelType := stones.Stones[idx].GetLabelValue("kernel.type")
+			if pkgKernelType == kernelType {
+				ans.Stones = append(ans.Stones, stones.Stones[idx])
+				// We manage existing and old packages without kernel.type label
+				// as vanilla type.
+			} else if pkgKernelType == "" && kernelType == "vanilla" {
 				ans.Stones = append(ans.Stones, stones.Stones[idx])
 			}
 		}
