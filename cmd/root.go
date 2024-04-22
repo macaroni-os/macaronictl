@@ -39,7 +39,7 @@ func initConfig(config *specs.MacaroniCtlConfig) {
 	config.Viper.AutomaticEnv()
 
 	// Create EnvKey Replacer for handle complex structure
-	replacer := strings.NewReplacer(".", "__")
+	replacer := strings.NewReplacer(".", "__", "-", "_")
 	config.Viper.SetEnvKeyReplacer(replacer)
 
 	// Set config file name (without extension)
