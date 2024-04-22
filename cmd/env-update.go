@@ -39,6 +39,8 @@ $> macaronictl env-update
 			config.Viper.BindPFlag("env-update.systemd", flags.Lookup("systemd"))
 			config.Viper.BindPFlag("env-update.csh", flags.Lookup("csh"))
 			config.Viper.BindPFlag("env-update.ldconfig", flags.Lookup("ldconfig"))
+			config.Unmarshal()
+
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 
@@ -65,9 +67,12 @@ $> macaronictl env-update
 
 	flags := c.Flags()
 	flags.Bool("dry-run", false, "Dry run commands.")
-	flags.Bool("systemd", false, "Generate systemd environment file.")
-	flags.Bool("csh", false, "Generate /etc/csh.env file.")
-	flags.Bool("ldconfig", true, "Generate /etc/ld.so.cache and /etc/ld.so.conf.")
+	flags.Bool("systemd", config.Viper.GetBool("env-update.systemd"),
+		"Generate systemd environment file.")
+	flags.Bool("csh", config.Viper.GetBool("env-update.csh"),
+		"Generate /etc/csh.env file.")
+	flags.Bool("ldconfig", config.Viper.GetBool("env-update.ldconfig"),
+		"Generate /etc/ld.so.cache and /etc/ld.so.conf.")
 
 	return c
 }
