@@ -16,8 +16,8 @@ builds:
     ldflags:
       - >-
         -s -w
-        -X github.com/funtoo/macaronictl/cmd.BuildTime={{.Date}}
-        -X github.com/funtoo/macaronictl/cmd.BuildCommit={{.Commit}}
+        -X github.com/macaroni-os/macaronictl/cmd.BuildTime={{.Date}}
+        -X github.com/macaroni-os/macaronictl/cmd.BuildCommit={{.Commit}}
 
 archives:
   - format: binary

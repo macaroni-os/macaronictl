@@ -1,7 +1,7 @@
 
 # go tool nm ./luet | grep Commit
-override LDFLAGS += -X "github.com/funtoo/macaronictl/cmd.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
-override LDFLAGS += -X "github.com/funtoo/macaronictl/cmd.BuildCommit=$(shell git rev-parse HEAD)"
+override LDFLAGS += -X "github.com/macaroni-os/macaronictl/cmd.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
+override LDFLAGS += -X "github.com/macaroni-os/macaronictl/cmd.BuildCommit=$(shell git rev-parse HEAD)"
 
 NAME ?= macaronictl
 PACKAGE_NAME ?= $(NAME)
