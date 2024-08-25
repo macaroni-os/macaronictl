@@ -25,6 +25,15 @@ func Exists(name string) bool {
 	if _, err := os.Stat(name); err != nil {
 		if os.IsNotExist(err) {
 			return false
+		} else {
+			// Check if the file is a broken link.
+			link, err := os.Readlink(name)
+			// If the file is not a link an error
+			// readlink <path>: invalid argument
+			// is generated.
+			if err != nil {
+				return false
+			}
 		}
 	}
 	return true
