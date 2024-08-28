@@ -24,16 +24,25 @@ func KeyInList(key string, arr *[]string) bool {
 func Exists(name string) bool {
 	if _, err := os.Stat(name); err != nil {
 		if os.IsNotExist(err) {
-			return false
-		} else {
 			// Check if the file is a broken link.
-			_, err := os.Readlink(name)
+			link, err := os.Readlink(name)
 			// If the file is not a link an error
 			// readlink <path>: invalid argument
 			// is generated.
-			if err != nil {
-				return false
+			if link != "" && err == nil {
+				return true
 			}
+			return false
+		} else {
+			// Check if the file is a broken link.
+			link, err := os.Readlink(name)
+			// If the file is not a link an error
+			// readlink <path>: invalid argument
+			// is generated.
+			if link != "" && err == nil {
+				return true
+			}
+			return false
 		}
 	}
 	return true
