@@ -1,0 +1,5 @@
+name: "MARK debian-sources"
+kernel_prefix: "vmlinuz"
+suffix: "mark"
+type: "debian"
+with_arch: true
