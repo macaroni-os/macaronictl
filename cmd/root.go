@@ -17,11 +17,11 @@ import (
 )
 
 const (
-	cliName = `Copyright (c) 2020-2024 Macaroni OS - Daniele Rondina
+	cliName = `Copyright (c) 2020-2026 Macaroni OS - Daniele Rondina
 
 Macaroni OS System Management Tool`
 
-	MACARONICTL_VERSION = `0.10.0`
+	MACARONICTL_VERSION = `0.10.1`
 )
 
 var (
