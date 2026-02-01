@@ -59,18 +59,14 @@ $ macaronictl kernel list
 				}
 
 				table := tablewriter.NewWriter(os.Stdout)
-				table.SetBorders(tablewriter.Border{
-					Left: true, Top: false, Right: true, Bottom: false,
-				})
-				table.SetCenterSeparator("|")
-				table.SetHeader([]string{
+				table.Header(
 					"Kernel",
 					"Kernel Version",
 					"Type",
 					"Has Initrd",
 					"Has Kernel Image",
 					"Has bzImage,Initrd links",
-				})
+				)
 
 				for _, kf := range bootFiles.Files {
 

@@ -78,18 +78,14 @@ NOTE: It works only if the repositories are synced.
 
 			if !jsonOutput {
 				table := tablewriter.NewWriter(os.Stdout)
-				table.SetBorders(tablewriter.Border{
-					Left: true, Top: false, Right: true, Bottom: false,
-				})
-				table.SetCenterSeparator("|")
-				table.SetHeader([]string{
+				table.Header(
 					"Package",
 					"Package Version",
 					"System Options",
 					"User Options",
 					"Engine",
 					"Binaries",
-				})
+				)
 
 				installedStonesMap := stonesInstalled.ToMap()
 

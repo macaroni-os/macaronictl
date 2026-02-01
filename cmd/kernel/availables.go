@@ -106,11 +106,7 @@ NOTE: It works only if the repositories are synced.
 				}
 
 				table := tablewriter.NewWriter(os.Stdout)
-				table.SetBorders(tablewriter.Border{
-					Left: true, Top: false, Right: true, Bottom: false,
-				})
-				table.SetCenterSeparator("|")
-				table.SetHeader([]string{
+				table.Header(
 					"Kernel",
 					"Kernel Version",
 					"Package Version",
@@ -118,7 +114,7 @@ NOTE: It works only if the repositories are synced.
 					"LTS",
 					"Released",
 					"Type",
-				})
+				)
 
 				for _, k := range kernels.Kernels {
 					ltsstr := "false"

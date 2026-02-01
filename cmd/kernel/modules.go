@@ -59,18 +59,14 @@ NOTE: It works only if the repositories are synced.
 				}
 
 				table := tablewriter.NewWriter(os.Stdout)
-				table.SetBorders(tablewriter.Border{
-					Left: true, Top: false, Right: true, Bottom: false,
-				})
-				table.SetCenterSeparator("|")
-				table.SetHeader([]string{
+				table.Header(
 					"Package",
 					"Package Version",
 					"Kernel Branch",
 					"Kernel Type",
 					"Kernel Version",
 					"Repository",
-				})
+				)
 
 				// Create response struct
 				for _, s := range stones.Stones {

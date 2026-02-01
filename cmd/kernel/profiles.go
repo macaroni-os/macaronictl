@@ -59,18 +59,14 @@ $ macaronictl kernel profiles
 				}
 
 				table := tablewriter.NewWriter(os.Stdout)
-				table.SetBorders(tablewriter.Border{
-					Left: true, Top: false, Right: true, Bottom: false,
-				})
-				table.SetCenterSeparator("|")
-				table.SetHeader([]string{
+				table.Header(
 					"Name",
 					"Kernel Prefix",
 					"Initrd Prefix",
 					"Suffix",
 					"Type",
 					"With Arch",
-				})
+				)
 
 				for _, kt := range types {
 
