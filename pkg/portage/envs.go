@@ -51,11 +51,14 @@ func ParseEnvFile(file string) (map[string]string, error) {
 	// delete the internal shell vars that the user is not
 	// interested in
 	delete(r.Vars, "PWD")
+	delete(r.Vars, "OLDPWD")
+	delete(r.Vars, "PPID")
 	delete(r.Vars, "HOME")
 	delete(r.Vars, "IFS")
 	delete(r.Vars, "OPTIND")
 	delete(r.Vars, "GID")
 	delete(r.Vars, "UID")
+	delete(r.Vars, "EUID")
 
 	for k, v := range r.Vars {
 		ans[k] = v.String()
