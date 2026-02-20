@@ -21,7 +21,7 @@ const (
 
 Macaroni OS System Management Tool`
 
-	MACARONICTL_VERSION = `0.10.1`
+	MACARONICTL_VERSION = `0.10.2`
 )
 
 var (
