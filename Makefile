@@ -11,6 +11,9 @@ VERSION := $(shell echo $(VERSION) | sed -e 's/^v//g')
 BUILD_PLATFORMS ?= -osarch="linux/amd64" -osarch="linux/386" -osarch="linux/arm"
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
+GOBIN := $(shell go env GOPATH)/bin/
+GINKGO := $(GOBIN)/ginkgo
+
 .PHONY: all
 all: deps build
 
@@ -20,7 +23,7 @@ fmt:
 
 .PHONY: test
 test: deps
-	ginkgo -r -flake-attempts 3 ./...
+	$(GINKGO) -r -flake-attempts 3 ./...
 
 .PHONY: coverage
 coverage:
@@ -38,10 +41,8 @@ clean:
 deps:
 	go env
 	# Installing dependencies...
-	#GO111MODULE=on go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
-	go get github.com/onsi/ginkgo/v2/ginkgo
-	go get github.com/onsi/gomega/...
-	ginkgo version
+	GOBIN=$(GOBIN) go install github.com/onsi/ginkgo/v2/ginkgo
+	$(GINKGO) version
 
 .PHONY: build
 build:
