@@ -38,7 +38,8 @@ clean:
 deps:
 	go env
 	# Installing dependencies...
-	GO111MODULE=on go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+	#GO111MODULE=on go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+	go get github.com/onsi/ginkgo/v2/ginkgo
 	go get github.com/onsi/gomega/...
 	ginkgo version
 
