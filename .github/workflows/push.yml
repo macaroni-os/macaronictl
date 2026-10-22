@@ -9,12 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ["1.26.x" ]
+        go: ["1.26.x"]
+
     steps:
       - name: Install Go ${{ matrix.go }}
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go }}
+
+      - name: Get Golang Version
+        id: goversion
+        run: |
+          echo "GOVERSION=$(go env GOVERSION)" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,15 +28,11 @@ jobs:
       - name: Install deps
         run: |
             sudo -E env "PATH=$PATH" make deps
+
       - name: Install GoReleaser
         uses: goreleaser/goreleaser-action@v4
         with:
           install-only: true
-
-      - name: Get Golang Version
-        id: goversion
-        run: |
-          echo "GOVERSION=$(go env GOVERSION)" >> $GITHUB_ENV
 
       - name: Build test
         run: sudo -E env "PATH=$PATH" make goreleaser-snapshot
@@ -39,4 +41,4 @@ jobs:
 
       - name: Tests
         run: |
-          sudo -E env "PATH=$PATH" make test-coverage
+          sudo -E env "PATH=$PATH" make test
