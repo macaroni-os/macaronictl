@@ -19,9 +19,7 @@ fmt:
 	go fmt ./...
 
 .PHONY: test
-test:
-	GO111MODULE=off go get github.com/onsi/ginkgo/v2/ginkgo
-	GO111MODULE=off go get github.com/onsi/gomega/...
+test: deps
 	ginkgo -r -flake-attempts 3 ./...
 
 .PHONY: coverage
@@ -40,7 +38,6 @@ clean:
 deps:
 	go env
 	# Installing dependencies...
-	GO111MODULE=on go install -mod=mod golang.org/x/lint/golint
 	GO111MODULE=on go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
 	go get github.com/onsi/gomega/...
 	ginkgo version
